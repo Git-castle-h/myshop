@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/admin/login/login.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/shopping/common/footer.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/shopping/common/header.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/shopping/login/idFind.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/shopping/login/pwReset.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/shopping/member/memberJoin.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/shopping/mypage/memberConfirm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/shopping/order/orderList.jsp=UTF-8
