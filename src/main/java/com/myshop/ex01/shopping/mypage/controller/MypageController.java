@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/mypage")
 public class MypageController {
 	
-    @RequestMapping("/memberConfirm.do")
+    @RequestMapping("/memberConfirm")
     public ModelAndView member(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);

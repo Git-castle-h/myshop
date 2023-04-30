@@ -11,7 +11,6 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 <!--	<resources mapping="/resources/**" location="/resources/" />-->
@@ -32,12 +31,16 @@
 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/*/*.do"/>
-			<mvc:mapping path="/*/*/*.do"/>
+			<mvc:mapping path="/*/*"/>
+			<mvc:mapping path="/*/*/*"/>
 			<beans:bean class="com.myshop.ex01.common.interceptor.ViewNameInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-
+	
+	<!-- 리소스파일경로 -->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:annotation-driven />
+	
 	<!-- 멀티파트 리졸버 -->
 	<beans:bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="52428800" />

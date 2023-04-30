@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin/order")
 public class OrderController {
 	
-	@RequestMapping(value="/listOrder.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/listOrder", method = {RequestMethod.GET,RequestMethod.POST})
     public String listOrder(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
         String viewName = (String)request.getAttribute("viewName");        
         return viewName;
     }
 	
-	@RequestMapping(value="/modOrder.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/modOrder", method = {RequestMethod.GET,RequestMethod.POST})
     public String modOrder(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
         String viewName = (String)request.getAttribute("viewName");        
         return viewName;

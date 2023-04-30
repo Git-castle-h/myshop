@@ -12,13 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/help")
 public class HelpController {
 
-    @RequestMapping("/listHelp.do")
+    @RequestMapping("/listHelp")
     public ModelAndView listHelp(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);
         return mav;
     }
-    @RequestMapping("/memberHelp.do")
+    @RequestMapping("/memberHelp")
     public String memberHelp(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception{
     	String viewName = (String)request.getAttribute("viewName");
         return viewName;

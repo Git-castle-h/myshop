@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value="/cart", method = {RequestMethod.GET,RequestMethod.POST})
 public class CartController {
 
-    @RequestMapping(value="/cartList.do", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value="/cartList", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView cartList(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView();

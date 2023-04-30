@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin/member")
 public class MemberController {
     
-	@RequestMapping(value="/listMember.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/listMember", method = {RequestMethod.GET,RequestMethod.POST})
     public String listHelp(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
         String viewName = (String)request.getAttribute("viewName");        
         return viewName;
     }
-	@RequestMapping(value="/modMember.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/modMember", method = {RequestMethod.GET,RequestMethod.POST})
     public String modHelp(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
         String viewName = (String)request.getAttribute("viewName");        
         return viewName;

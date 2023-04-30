@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin/main")
 public class MainController {
 	
-    @RequestMapping(value="/main.do", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value="/main", method = {RequestMethod.GET,RequestMethod.POST})
     public String listHelp(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
         String viewName = (String)request.getAttribute("viewName");        
         return viewName;

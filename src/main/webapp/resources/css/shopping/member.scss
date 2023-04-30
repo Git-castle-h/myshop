@@ -1,0 +1,53 @@
+@charset "UTF-8";
+@import "../common/variable.scss";
+
+
+.memberjoin_wrap{
+
+    .container{
+        max-width: 768px;
+
+        .form{
+            padding-bottom: 3em;
+            &:last-child{
+                padding-bottom: 0; 
+            }
+            .form_context{
+                .form_line{
+                    &>*{
+                        margin-right: 0.2em;
+                    }
+                    .mj_id{
+
+                    }
+                    .btn{
+                        padding:0.5em;
+                    }
+
+                    p.context{
+                        width:100%;
+                        height:8em;
+                        overflow-y: scroll;
+                        border: 1px solid $superlightGray;
+                        border-radius: 0.4em;
+                        box-sizing: border-box;
+                        padding:0.5em 0.6em;
+                    }
+                }
+            }
+            
+            &.submit{
+                .btn{
+                    width:7em;
+                    padding:0.5em; 
+                    box-sizing: border-box;
+                    text-align: center;
+                    margin:0 0.25em;
+                }
+            }
+        }
+
+
+    }
+
+}

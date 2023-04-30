@@ -8,22 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller("productController")
-@RequestMapping("/shopping/product")
+@RequestMapping("/product")
 public class ProductController {
-    @RequestMapping("/product.do")
+    @RequestMapping("/product")
     public ModelAndView product(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);
         return mav;
     }
 
-    @RequestMapping("/productDetail.do")
+    @RequestMapping("/productDetail")
     public ModelAndView productDetail(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);
         return mav;
     }
-    @RequestMapping("/productList.do")
+    @RequestMapping("/productList")
     public ModelAndView productList(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);

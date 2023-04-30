@@ -1,0 +1,16 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'Swagger';
+  font-weight: 400;
+  src:  url('/resources/font/SDSwaggerTTF.eot') format('eot'),
+        url('/resources/font/SDSwaggerTTF.ttf') format('true'),
+        url('/resources/font/SDSwaggerTTF.woff') format('woff'),
+        url('/resources/font/SDSwaggerTTF.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Bangers';
+  font-weight: 400;
+  src:  url('/resources/font/Bangers-Regular.ttf') format('truetype');
+}
+

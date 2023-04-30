@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/member")
 public class MemberController {
 
-    @RequestMapping("/memberJoin.do")
+    @RequestMapping("/memberJoin")
     public ModelAndView memberJoin(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);

@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 @Controller("orderController")
 @RequestMapping("/order")
 public class OrderController {
-    @RequestMapping("/order.do")
+    @RequestMapping("/order")
     public ModelAndView order(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);
         return mav;
     }
-    @RequestMapping("/orderList.do")
+    @RequestMapping("/orderList")
     public ModelAndView orderList(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);

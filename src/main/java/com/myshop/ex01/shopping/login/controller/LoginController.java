@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/login")
 public class LoginController {
 
-    @RequestMapping("/login.do")
+    @RequestMapping("/login")
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         System.out.println(viewName);
@@ -19,14 +19,14 @@ public class LoginController {
         return mav;
     }
 
-    @RequestMapping("/idFind.do")
+    @RequestMapping("/idFind")
     public ModelAndView idFind(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);
         return mav;
     }
 
-    @RequestMapping("/pwReset.do")
+    @RequestMapping("/pwReset")
     public ModelAndView pwReset(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);

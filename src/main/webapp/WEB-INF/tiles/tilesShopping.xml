@@ -3,9 +3,11 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
-	<definition name="baseLayout"
+	<definition name="shoppingLayout"
 		template="/WEB-INF/views/shopping/common/layout.jsp">
 		<put-attribute name="title" value="레이아웃 페이지" />
+		<put-attribute name="layoutCss" value="/resources/css/shopping/layout.css" />
+		<put-attribute name="dynamicCss" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/shopping/common/header.jsp" />
 <!--		<put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />-->
 		<put-attribute name="body" value="" />
@@ -13,48 +15,64 @@
 <!--		<put-attribute name="quickMenu" value="/WEB-INF/views/common/quickMenu.jsp" />-->
 	</definition>
 
-	<definition name="/login/login" extends="baseLayout">
+	<definition name="/login/login" extends="shoppingLayout">
 		<put-attribute name="title" value="로그인 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/login.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/login/login.jsp" />
 	</definition>
-	<definition name="/login/idFind" extends="baseLayout">
+	<definition name="/login/idFind" extends="shoppingLayout">
 		<put-attribute name="title" value="아이디찾기 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/login.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/login/idFind.jsp" />
 	</definition>
-	<definition name="/login/pwReset" extends="baseLayout">
+	<definition name="/login/pwReset" extends="shoppingLayout">
 		<put-attribute name="title" value="비밀번호리셋 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/login.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/login/pwReset.jsp" />
 	</definition>
-	<definition name="/cart/cartList" extends="baseLayout">
+	<definition name="/cart/cartList" extends="shoppingLayout">
 		<put-attribute name="title" value="장바구니 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/cart.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/cart/cartList.jsp" />
 	</definition>
-	<definition name="/help/listHelp" extends="baseLayout">
+	<definition name="/help/listHelp" extends="shoppingLayout">
 		<put-attribute name="title" value="문의 목록 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/help.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/help/listHelp.jsp" />
 	</definition>
-	<definition name="/help/memberHelp" extends="baseLayout">
+	<definition name="/help/memberHelp" extends="shoppingLayout">
 		<put-attribute name="title" value="문의 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/help.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/help/memberHelp.jsp" />
 	</definition>
-	<definition name="/member/memberjoin" extends="baseLayout">
+	<definition name="/main/main" extends="shoppingLayout">
+		<put-attribute name="title" value="메인 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/main.css" />
+		<put-attribute name="body" value="/WEB-INF/views/shopping/main/main.jsp" />
+	</definition>
+	<definition name="/member/memberJoin" extends="shoppingLayout">
 		<put-attribute name="title" value="회원가입 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/member.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/member/memberJoin.jsp" />
 	</definition>
-	<definition name="/mypage/memberConfirm" extends="baseLayout">
+	<definition name="/mypage/memberConfirm" extends="shoppingLayout">
 		<put-attribute name="title" value="멤버확인 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/mypage.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/mypage/memberConfirm.jsp" />
 	</definition>
-	<definition name="/order/orderList" extends="baseLayout">
+	<definition name="/order/orderList" extends="shoppingLayout">
 		<put-attribute name="title" value="주문목록 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/order.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/order/orderList.jsp" />
 	</definition>
-	<definition name="/product/productDetail" extends="baseLayout">
+	<definition name="/product/productDetail" extends="shoppingLayout">
 		<put-attribute name="title" value="상품 상세 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/product.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/product/productDetail.jsp" />
 	</definition>
-	<definition name="/product/productList" extends="baseLayout">
+	<definition name="/product/productList" extends="shoppingLayout">
 		<put-attribute name="title" value="상품 목록 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/product.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/product/productList.jsp" />
 	</definition>
 </tiles-definitions>

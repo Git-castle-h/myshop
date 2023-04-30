@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin/login")
 public class LoginController {
 	
-    @RequestMapping(value="/login.do", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value="/login", method = {RequestMethod.GET,RequestMethod.POST})
     public String listHelp(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
         String viewName = (String)request.getAttribute("viewName");        
         return viewName;

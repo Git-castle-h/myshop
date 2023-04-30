@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin/product")
 public class ProductController {
 	
-	@RequestMapping(value="/modProduct.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/modProduct", method = {RequestMethod.GET,RequestMethod.POST})
     public String modProduct(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
         String viewName = (String)request.getAttribute("viewName");        
         return viewName;
     }
 	
-	@RequestMapping(value="/listProduct.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/listProduct", method = {RequestMethod.GET,RequestMethod.POST})
     public String listProduct(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
         String viewName = (String)request.getAttribute("viewName");        
         return viewName;

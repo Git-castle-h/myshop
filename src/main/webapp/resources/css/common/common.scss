@@ -1,0 +1,285 @@
+@charset "UTF-8";
+
+@import "./variable.scss";
+
+
+*{
+	margin:0; 
+	padding:0;
+}
+
+body{
+    font-family: "Swagger",sans-serif;
+	width:100vw;
+	overflow-x: hidden;
+	color:$lightGray;
+}
+
+.container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	
+  }
+
+.wrap{
+	padding-top: 1em;
+}
+
+  input,.input{
+    border: 1px solid $superlightGray;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+    padding:0.5em 0.6em;
+
+	&::placeholder{
+		color:$superlightGray;
+	}
+
+	&:disabled{
+		// background-color: $superlightGray;
+	}
+
+	&.postnum{
+		width:5em;
+	}
+
+	&.address{
+		width:16em;
+	}
+
+	&.call3{
+		width:2.6em;
+		text-align: center;
+	}
+
+	&.call4{
+		width:3em;
+		text-align: center;
+	}
+
+  }
+
+  select,.select{
+	border: 1px solid $superlightGray;
+    border-radius: 0.4em;
+	font-size: 0.8em;
+    box-sizing: border-box;
+	position: relative;
+
+	&.w14{
+		width:14.5em;
+	}
+
+	ul.select_box{
+		position: absolute;
+		overflow: hidden;
+		z-index: 10;
+		width:100%;
+		top:100%;
+		left:0;
+		border: 1px solid $superlightGray;
+		background-color: rgba($color: #ffffff, $alpha: 1.0);
+		border-radius: 0.4em;
+		&.hide{
+			display: none;
+		}
+	}
+
+	option,.option{
+		position: relative;
+		box-sizing: border-box;
+		display: flex;
+		background-color: #fff;
+		border-radius: 0.4em;
+		// justify-content: center;
+		align-items: center;
+		width:100%;
+		box-sizing: border-box;
+		padding: 0.5em 0.6em;
+		border: 0px;
+		line-height: 1.5;
+		cursor:pointer;
+
+		&.gray{
+			color:$superlightGray;
+		}
+
+		&:hover{
+			background-color: $superlightGray;
+			color:#fff;
+		}
+
+		.down{
+			position:absolute;
+			top:50%;
+			right:0.5em;
+			transform: translate(0,-50%);
+		}
+	}
+  }
+
+  #main{
+	font-size: 1.4em;
+    min-height:100vh;
+	padding-top: 2em;
+  }
+
+    ul,li,ol{
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    a{
+        text-decoration: none;
+        color:#2d2d2d;
+    }
+
+	.btn_area{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding:1em 0;
+	}
+
+	.btn{
+		cursor: pointer;
+	}
+
+	.btn1{
+		color: #fff;
+		background-color: $lightGray;
+		border-radius: 0.4em;
+		border:0px;
+		&:hover{
+			background-color: $deepGray;
+		}
+	}
+	
+	.btn2{
+		color: #fff;
+		background-color: $superlightGray;
+		border-radius: 0.4em;
+		border:0px;
+		&:hover{
+			background-color: $lightGray;
+		}
+	}
+
+	.page_top{
+		.page_title_wrap{
+			font-family: "Bangers",sans-serif;
+			font-size: 2.5em;
+			text-align: center;
+			color:$lightGray;
+			padding-bottom: 0.5em;
+		}
+
+	}
+
+	.page_context_wrap{
+		padding-bottom: 3em;
+	}
+
+	.form{
+		.form_title{
+			width:100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-bottom: 0.7em;
+			margin-bottom: 0.7em;
+			border-bottom:2px solid $superlightGray;
+
+		}
+		
+		.form_context{
+			padding-bottom: 0.7em;
+			margin-bottom: 0.7em;
+			border-bottom:2px solid $superlightGray;
+			&.end{
+				padding-bottom: 0em;
+				border-bottom: 0px;
+			}
+
+			.form_line{
+				padding-bottom:0.4em;
+
+				&:last-child{
+					padding-bottom: 0;
+				}
+			}
+		}
+	}
+
+
+	// [ + (숫자) - ] input
+
+	.plusMinus_wrap{
+		display: flex;
+		justify-content: flex-start;
+		font-size: 0.8em;
+		.plusMinus_num{
+			width:auto;
+			padding:0.25em;
+			border-radius: 0.5em;
+			border: 1px solid $superlightGray;
+			color:$deepGray;
+			.sign{
+				padding:0.25em;
+				border:0px;
+				background-color: rgba($color: #000000, $alpha: 0);
+				cursor:pointer;
+				color:$lightGray;
+				&.plus{
+
+				}
+				&.minus{
+
+				}
+				&:hover{
+					color:rgba($color: $deepGray, $alpha: 1);
+				}
+			}
+			.plusMinus_input{
+				width:1.5em;
+				padding:0.25em;
+				border: 0px;
+				text-align: center;
+			}
+		}
+	}
+
+
+	.fontsmall{
+		font-size: 0.9em;
+	}
+
+	.fontsupersmall{
+		font-size: 0.8em;
+	}
+
+  	@media (min-width: $small) {
+	.container {
+		width: $_small;
+	}
+  	}
+	@media (min-width: $moblie) {
+	.container {
+	  width: $_moblie;
+	}
+	}
+  
+	@media (min-width: $tablet) {
+	.container {
+	  width: $_tablet;
+	}
+	}
+  
+	@media (min-width: $desktop) {
+	.container {
+	  width: $_desktop;
+	}
+	}

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/main")
 public class MainController {
 
-    @RequestMapping("/main.do")
+    @RequestMapping("/main")
     public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);
