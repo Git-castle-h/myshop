@@ -1,0 +1,692 @@
+-- 회원테이블
+CREATE TABLE t_member (
+	m_id        VARCHAR2(15)  NOT NULL, -- 회원아이디
+	m_email     VARCHAR2(50)  NOT NULL, -- 회원이메일
+	m_password  VARCHAR2(20)  NOT NULL, -- 회원비밀번호
+	m_address   VARCHAR2(500) NOT NULL, -- 회원주소
+	m_tel1      VARCHAR2(20)  NOT NULL, -- 회원번호1
+	m_tel2      VARCHAR2(20)  NULL,     -- 회원번호2
+	m_gender    VARCHAR2(20)  NOT NULL, -- 회원성별
+	m_b_day     VARCHAR2(20)  NOT NULL, -- 회원생일
+	m_job       VARCHAR2(20)  NULL,     -- 회원직업
+	m_recommend VARCHAR2(15)  NULL,     -- 회원추천인
+	m_agree1    VARCHAR2(20)  NOT NULL, -- 이용약관
+	m_agree2    VARCHAR2(20)  NOT NULL, -- 개인정보 수집
+	m_agree3    VARCHAR2(20)  NOT NULL, -- 개인정보 위탁
+	m_join_date DATE          DEFAULT current_date NOT NULL -- 회원가입일자
+);
+
+-- 회원테이블 기본키
+CREATE UNIQUE INDEX PK_t_member
+	ON t_member ( -- 회원테이블
+		m_id ASC -- 회원아이디
+	);
+
+-- 회원테이블
+ALTER TABLE t_member
+	ADD
+		CONSTRAINT PK_t_member -- 회원테이블 기본키
+		PRIMARY KEY (
+			m_id -- 회원아이디
+		);
+
+-- 상품 테이블
+CREATE TABLE t_product (
+	p_id             VARCHAR2(20)  NOT NULL, -- 상품번호
+	p_name           VARCHAR2(100) NOT NULL, -- 상품이름
+	p_price          VARCHAR2(20)  NOT NULL, -- 상품가격
+	p_detail_title   VARCHAR2(100) NOT NULL, -- 상품상세제목
+	p_detail_context VARCHAR2(500) NOT NULL, -- 상품상세내용
+	p_recommend      VARCHAR2(20)  NOT NULL, -- 상품 추천
+	admin_id         VARCHAR2(20)  NOT NULL, -- 관리자아이디
+	p_date           DATE          DEFAULT current_date NOT NULL -- 상품등록일자
+);
+
+-- 상품 테이블 기본키
+CREATE UNIQUE INDEX PK_t_product
+	ON t_product ( -- 상품 테이블
+		p_id    ASC, -- 상품번호
+		p_name  ASC, -- 상품이름
+		p_price ASC  -- 상품가격
+	);
+
+-- 상품 테이블
+ALTER TABLE t_product
+	ADD
+		CONSTRAINT PK_t_product -- 상품 테이블 기본키
+		PRIMARY KEY (
+			p_id,    -- 상품번호
+			p_name,  -- 상품이름
+			p_price  -- 상품가격
+		);
+
+-- 상품 옵션 테이블
+CREATE TABLE t_option (
+	p_id     VARCHAR2(20)  NOT NULL, -- 상품번호
+	p_name   VARCHAR2(100) NOT NULL, -- 상품이름
+	p_option VARCHAR2(100) NOT NULL, -- 상품옵션
+	p_price  VARCHAR2(20)  NOT NULL  -- 상품가격
+);
+
+-- 상품 옵션 테이블 기본키
+CREATE UNIQUE INDEX PK_t_option
+	ON t_option ( -- 상품 옵션 테이블
+		p_id     ASC, -- 상품번호
+		p_name   ASC, -- 상품이름
+		p_option ASC, -- 상품옵션
+		p_price  ASC  -- 상품가격
+	);
+
+-- 상품 옵션 테이블
+ALTER TABLE t_option
+	ADD
+		CONSTRAINT PK_t_option -- 상품 옵션 테이블 기본키
+		PRIMARY KEY (
+			p_id,     -- 상품번호
+			p_name,   -- 상품이름
+			p_option, -- 상품옵션
+			p_price   -- 상품가격
+		);
+
+-- 상품 이미지 테이블
+CREATE TABLE t_product_image (
+	p_id         VARCHAR2(20)  NOT NULL, -- 상품번호
+	p_name       VARCHAR2(100) NOT NULL, -- 상품이름
+	p_price      VARCHAR2(20)  NOT NULL, -- 상품가격
+	p_image_date DATE          DEFAULT current_date NOT NULL , -- 이미지등록일자
+	p_image_type VARCHAR2(20)  NOT NULL, -- 이미지타입
+	p_image_id   VARCHAR2(20)  NOT NULL, -- 이미지번호
+	p_image_name VARCHAR2(50)  NOT NULL  -- 이미지이름
+);
+
+-- 상품 이미지 테이블 기본키
+CREATE UNIQUE INDEX PK_t_product_image
+	ON t_product_image ( -- 상품 이미지 테이블
+		p_id    ASC, -- 상품번호
+		p_name  ASC, -- 상품이름
+		p_price ASC  -- 상품가격
+	);
+
+-- 상품 이미지 테이블
+ALTER TABLE t_product_image
+	ADD
+		CONSTRAINT PK_t_product_image -- 상품 이미지 테이블 기본키
+		PRIMARY KEY (
+			p_id,    -- 상품번호
+			p_name,  -- 상품이름
+			p_price  -- 상품가격
+		);
+
+-- 장바구니
+CREATE TABLE t_cart (
+	m_id     VARCHAR2(15)  NOT NULL, -- 회원아이디
+	p_id     VARCHAR2(20)  NOT NULL, -- 상품번호
+	p_name   VARCHAR2(100) NOT NULL, -- 상품이름
+	p_option VARCHAR2(100) NOT NULL, -- 상품옵션
+	p_price  VARCHAR2(20)  NOT NULL, -- 상품가격
+	c_number VARCHAR2(20)  DEFAULT 1 NOT NULL , -- 장바구니갯수
+	c_id	 VARCHAR2(20)  NOT NULL , -- 장바구니아이디
+	c_date   DATE          DEFAULT current_date NOT NULL  -- 장바구니 등록일자
+);
+
+-- 장바구니 기본키
+CREATE UNIQUE INDEX PK_t_cart
+	ON t_cart ( -- 장바구니
+		m_id     ASC, -- 회원아이디
+		p_id     ASC, -- 상품번호
+		p_name   ASC, -- 상품이름
+		p_option ASC, -- 상품옵션
+		p_price  ASC  -- 상품가격
+	);
+
+-- 장바구니
+ALTER TABLE t_cart
+	ADD
+		CONSTRAINT PK_t_cart -- 장바구니 기본키
+		PRIMARY KEY (
+			m_id,     -- 회원아이디
+			p_id,     -- 상품번호
+			p_name,   -- 상품이름
+			p_option, -- 상품옵션
+			p_price   -- 상품가격
+		);
+
+-- 주문정보
+CREATE TABLE t_order (
+	m_id      VARCHAR2(15)  NOT NULL, -- 회원아이디
+	p_id      VARCHAR2(20)  NOT NULL, -- 상품번호
+	p_option  VARCHAR2(100) NOT NULL, -- 상품옵션
+	p_name    VARCHAR2(100) NOT NULL, -- 상품이름
+	p_price   VARCHAR2(20)  NOT NULL, -- 상품가격
+	o_id 	  VARCHAR2(20)  NOT NULL, -- 주문아이디
+	o_address1 VARCHAR2(500) NOT NULL, -- 주문우편번호
+	o_address2 VARCHAR2(500) NOT NULL, -- 주문기본주소
+	o_address3 VARCHAR2(500) NOT NULL, -- 주문상세주소
+	o_status  VARCHAR2(20)  DEFAULT 'accepted' NOT NULL -- 주문상태
+	o_number  VARCHAR2(20)  DEFAULT '1' NOT NULL -- 주문갯수
+);
+
+-- 주문정보 기본키
+CREATE UNIQUE INDEX PK_t_order
+	ON t_order ( -- 주문정보
+		m_id     ASC, -- 회원아이디
+		p_id     ASC, -- 상품번호
+		p_option ASC, -- 상품옵션
+		p_name   ASC, -- 상품이름
+		p_price  ASC, -- 상품가격
+		o_id	 ASC  -- 주문아이디	
+	);
+
+-- 주문정보
+ALTER TABLE t_order
+	ADD
+		CONSTRAINT PK_t_order -- 주문정보 기본키
+		PRIMARY KEY (
+			m_id,     -- 회원아이디
+			p_id,     -- 상품번호
+			p_option, -- 상품옵션
+			p_name,   -- 상품이름
+			p_price   -- 상품가격
+			o_id	  -- 주문아이디
+		);
+
+-- 관리자테이블
+CREATE TABLE t_admin (
+	admin_id       VARCHAR2(20) NOT NULL, -- 관리자아이디
+	admin_pw       VARCHAR2(20) NOT NULL, -- 관리자비밀번호
+	admin_name     VARCHAR2(20) NOT NULL, -- 관리자이름
+	admin_position VARCHAR2(20) DEFAULT '사원' NOT NULL -- 관리자직급
+);
+
+-- 관리자테이블 기본키
+CREATE UNIQUE INDEX PK_t_admin
+	ON t_admin ( -- 관리자테이블
+		admin_id ASC -- 관리자아이디
+	);
+
+-- 관리자테이블
+ALTER TABLE t_admin
+	ADD
+		CONSTRAINT PK_t_admin -- 관리자테이블 기본키
+		PRIMARY KEY (
+			admin_id -- 관리자아이디
+		);
+
+-- 문의테이블
+CREATE TABLE t_help (
+	m_id             VARCHAR2(15)   NOT NULL, -- 회원아이디
+	admin_id         VARCHAR2(20)   NOT NULL, -- 관리자아이디
+	h_number         VARCHAR2(20)   NOT NULL, -- 문의번호
+	h_title          VARCHAR2(100)  NOT NULL, -- 문의제목
+	h_category       VARCHAR2(50)   NOT NULL, -- 문의종류
+	h_product_name   VARCHAR2(100)  NOT NULL, -- 문의상품
+	h_context        VARCHAR2(2048) NOT NULL, -- 문의내용
+	h_answer_title   VARCHAR2(20)   NULL,     -- 문의답변제목
+	h_answer_context VARCHAR2(2048) NULL,     -- 문의답변내용
+	h_date           DATE           DEFAULT current_date NOT NULL -- 문의등록일자
+);
+
+-- 문의테이블 기본키
+CREATE UNIQUE INDEX PK_t_help
+	ON t_help ( -- 문의테이블
+		m_id     ASC, -- 회원아이디
+		h_number ASC  -- 문의번호
+	);
+
+-- 문의테이블
+ALTER TABLE t_help
+	ADD
+		CONSTRAINT PK_t_help -- 문의테이블 기본키
+		PRIMARY KEY (
+			m_id,     -- 회원아이디
+			h_number  -- 문의번호
+		);
+
+-- 문의 이미지 테이블
+CREATE TABLE t_help_image (
+	m_id         VARCHAR2(15) NOT NULL, -- 회원아이디
+	h_number     VARCHAR2(20) NOT NULL, -- 문의번호
+	h_image_date DATE         DEFAULT current_date NOT NULL , -- 문의이미지등록일자
+	h_image_type VARCHAR2(20) NOT NULL, -- 문의이미지타입
+	h_image_id   VARCHAR2(20) NOT NULL, -- 문의이미지번호
+	h_image_name VARCHAR2(50) NOT NULL  -- 문의이미지이름
+);
+
+-- 문의 이미지 테이블 기본키
+CREATE UNIQUE INDEX PK_t_help_image
+	ON t_help_image ( -- 문의 이미지 테이블
+		m_id     ASC, -- 회원아이디
+		h_number ASC  -- 문의번호
+	);
+
+-- 문의 이미지 테이블
+ALTER TABLE t_help_image
+	ADD
+		CONSTRAINT PK_t_help_image -- 문의 이미지 테이블 기본키
+		PRIMARY KEY (
+			m_id,     -- 회원아이디
+			h_number  -- 문의번호
+		);
+
+-- 배너
+CREATE TABLE t_banner (
+	banner_name   VARCHAR2(20)  NOT NULL, -- 배너이름
+	banner_title  VARCHAR2(50)  NULL,     -- 배너제목
+	banner_detail VARCHAR2(200) NULL,     -- 배너상세
+	banner_link   VARCHAR2(50)  NULL      -- 배너링크
+);
+
+-- 배너 기본키
+CREATE UNIQUE INDEX PK_t_banner
+	ON t_banner ( -- 배너
+		banner_name ASC -- 배너이름
+	);
+
+-- 배너
+ALTER TABLE t_banner
+	ADD
+		CONSTRAINT PK_t_banner -- 배너 기본키
+		PRIMARY KEY (
+			banner_name -- 배너이름
+		);
+
+-- 배너 이미지 테이블
+CREATE TABLE t_banner_image (
+	banner_name       VARCHAR2(20) NOT NULL, -- 배너이름
+	banner_image_type VARCHAR2(20) NOT NULL, -- 배너이미지타입
+	banner_image_id   VARCHAR2(20) NOT NULL, -- 배너이미지번호
+	banner_image_name VARCHAR2(50) NOT NULL, -- 배너이미지이름
+	banner_image_date DATE         DEFAULT current_date NOT NULL -- 배너이미지등록일자
+);
+
+-- 배너 이미지 테이블 기본키
+CREATE UNIQUE INDEX PK_t_banner_image
+	ON t_banner_image ( -- 배너 이미지 테이블
+		banner_name ASC -- 배너이름
+	);
+
+-- 배너 이미지 테이블
+ALTER TABLE t_banner_image
+	ADD
+		CONSTRAINT PK_t_banner_image -- 배너 이미지 테이블 기본키
+		PRIMARY KEY (
+			banner_name -- 배너이름
+		);
+
+-- 상품 옵션 테이블
+ALTER TABLE t_option
+	ADD
+		CONSTRAINT FK_t_product_TO_t_option -- 상품 테이블 -> 상품 옵션 테이블
+		FOREIGN KEY (
+			p_id,    -- 상품번호
+			p_name,  -- 상품이름
+			p_price  -- 상품가격
+		)
+		REFERENCES t_product ( -- 상품 테이블
+			p_id,    -- 상품번호
+			p_name,  -- 상품이름
+			p_price  -- 상품가격
+		);
+
+-- 상품 이미지 테이블
+ALTER TABLE t_product_image
+	ADD
+		CONSTRAINT FK_t_product_TO_t_product_image -- 상품 테이블 -> 상품 이미지 테이블
+		FOREIGN KEY (
+			p_id,    -- 상품번호
+			p_name,  -- 상품이름
+			p_price  -- 상품가격
+		)
+		REFERENCES t_product ( -- 상품 테이블
+			p_id,    -- 상품번호
+			p_name,  -- 상품이름
+			p_price  -- 상품가격
+		);
+
+-- 장바구니
+ALTER TABLE t_cart
+	ADD
+		CONSTRAINT FK_t_member_TO_t_cart -- 회원테이블 -> 장바구니
+		FOREIGN KEY (
+			m_id -- 회원아이디
+		)
+		REFERENCES t_member ( -- 회원테이블
+			m_id -- 회원아이디
+		);
+
+-- 장바구니
+ALTER TABLE t_cart
+	ADD
+		CONSTRAINT FK_t_option_TO_t_cart -- 상품 옵션 테이블 -> 장바구니
+		FOREIGN KEY (
+			p_id,     -- 상품번호
+			p_name,   -- 상품이름
+			p_option, -- 상품옵션
+			p_price   -- 상품가격
+		)
+		REFERENCES t_option ( -- 상품 옵션 테이블
+			p_id,     -- 상품번호
+			p_name,   -- 상품이름
+			p_option, -- 상품옵션
+			p_price   -- 상품가격
+		);
+
+-- 주문정보
+ALTER TABLE t_order
+	ADD
+		CONSTRAINT FK_t_cart_TO_t_order -- 장바구니 -> 주문정보
+		FOREIGN KEY (
+			m_id,     -- 회원아이디
+			p_id,     -- 상품번호
+			p_name,   -- 상품이름
+			p_option, -- 상품옵션
+			p_price   -- 상품가격
+		)
+		REFERENCES t_cart ( -- 장바구니
+			m_id,     -- 회원아이디
+			p_id,     -- 상품번호
+			p_name,   -- 상품이름
+			p_option, -- 상품옵션
+			p_price   -- 상품가격
+		);
+
+-- 문의테이블
+ALTER TABLE t_help
+	ADD
+		CONSTRAINT FK_t_member_TO_t_help -- 회원테이블 -> 문의테이블
+		FOREIGN KEY (
+			m_id -- 회원아이디
+		)
+		REFERENCES t_member ( -- 회원테이블
+			m_id -- 회원아이디
+		);
+
+-- 문의테이블
+ALTER TABLE t_help
+	ADD
+		CONSTRAINT FK_t_admin_TO_t_help -- 관리자테이블 -> 문의테이블
+		FOREIGN KEY (
+			admin_id -- 관리자아이디
+		)
+		REFERENCES t_admin ( -- 관리자테이블
+			admin_id -- 관리자아이디
+		);
+
+-- 문의 이미지 테이블
+ALTER TABLE t_help_image
+	ADD
+		CONSTRAINT FK_t_help_TO_t_help_image -- 문의테이블 -> 문의 이미지 테이블
+		FOREIGN KEY (
+			m_id,     -- 회원아이디
+			admin_id, -- 관리자아이디
+			h_number  -- 문의번호
+		)
+		REFERENCES t_help ( -- 문의테이블
+			m_id,     -- 회원아이디
+			admin_id, -- 관리자아이디
+			h_number  -- 문의번호
+		);
+
+-- 배너 이미지 테이블
+ALTER TABLE t_banner_image
+	ADD
+		CONSTRAINT FK_t_banner_TO_t_banner_image -- 배너 -> 배너 이미지 테이블
+		FOREIGN KEY (
+			banner_name -- 배너이름
+		)
+		REFERENCES t_banner ( -- 배너
+			banner_name -- 배너이름
+		);
+
+
+-- 멤버 추가
+
+insert into t_member (m_id,m_email,m_password,m_address,m_tel1,m_gender,m_b_day,m_job,m_agree1,m_agree2,m_agree3) 
+    values('sampleID','sample@sample.com','1234','sample_address','000-0000-0000','남자','19991201','학생','agreed','agreed','agreed');
+
+
+-- 상품 추가
+insert into t_product (p_id,p_name,p_price,p_detail_title,p_detail_context,p_recommend,admin_id,p_category) 
+    values(
+    '1',
+    '추천 Clothes1',
+    '10000',
+    '추천상품 상세 제목',
+    '처음으로 추천하는 상품입니다.',
+    'recommend',
+    'admin',
+    'clothes');
+    
+insert into t_product (p_id,p_name,p_price,p_detail_title,p_detail_context,p_recommend,admin_id,p_category) 
+    values(
+    '2',
+    '추천 Accessory1',
+    '10000',
+    '추천상품 상세 제목',
+    '추천하는 상품입니다.',
+    'recommend',
+    'admin',
+    'accessory');
+
+insert into t_product (p_id,p_name,p_price,p_detail_title,p_detail_context,p_recommend,admin_id,p_category) 
+    values(
+    '3',
+    '추천 shoes1',
+    '10000',
+    '추천상품 상세 제목',
+    '추천하는 상품입니다.',
+    'recommend',
+    'admin',
+    'accessory');
+
+insert into t_product (p_id,p_name,p_price,p_detail_title,p_detail_context,p_recommend,admin_id,p_category) 
+    values(
+    '4',
+    'Clothes1',
+    '10000',
+    '일반상품 상세 제목',
+    '일반 상품입니다.',
+    'no',
+    'admin',
+    'clothes');
+    
+insert into t_product (p_id,p_name,p_price,p_detail_title,p_detail_context,p_recommend,admin_id,p_category) 
+    values(
+    '5',
+    'Accessory1',
+    '10000',
+    '일반상품 상세 제목',
+    '일반 상품입니다.',
+    'no',
+    'admin',
+    'accessory');
+
+
+insert into t_product (p_id,p_name,p_price,p_detail_title,p_detail_context,p_recommend,admin_id,p_category) 
+    values(
+    '6',
+    'shoes1',
+    '10000',
+    '일반상품 상세 제목',
+    '일반상품입니다.',
+    'no',
+    'admin',
+    'accessory');
+
+
+-- 관리자 추가
+
+insert into t_admin (admin_id,admin_pw,admin_name,admin_position)
+    values(
+    'admin',
+    'admin',
+    '관리자',
+    '관리자'
+    );
+
+insert into t_admin (admin_id,admin_pw,admin_name)
+    values(
+    'admin2',
+    'admin2',
+    '관리자2'
+    );
+
+-- 문의 추가
+
+insert into t_help (m_id,admin_id,h_number,h_title,h_category,h_product_name,h_context,h_answer_title,h_answer_context) 
+    values(
+    'sampleID',
+    'admin',
+    '1',
+    '문의1 제목입니다.',
+    '교환ㆍ환불',
+    '추천 Clothes1',
+    '문의1 내용입니다.',
+    '문의1 답변 제목입니다.',
+    '문의1 답변 내용입니다.'
+    );
+
+
+insert into t_help (m_id,h_number,h_title,h_category,h_product_name,h_context) 
+    values(
+    'sampleID',
+    '2',
+    '문의2 제목입니다.',
+    '교환ㆍ환불',
+    '추천 Clothes1',
+    '문의2 내용입니다.'
+    );
+    
+-- 옵션 추가
+
+select * from t_option;
+
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '1',
+    '추천 Clothes1',
+    '90',
+    '10000'
+    );
+
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '1',
+    '추천 Clothes1',
+    '95',
+    '10000'
+    );
+
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '1',
+    '추천 Clothes1',
+    '100',
+    '10000'
+    );
+    
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '1',
+    '추천 Clothes1',
+    '105',
+    '10000'
+    );
+    
+    
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '2',
+    '추천 Accessory1',
+    'freeSize',
+    '10000'
+    );
+
+    
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '3',
+    '추천 shoes1',
+    '260',
+    '10000'
+    );
+
+    
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '3',
+    '추천 shoes1',
+    '270',
+    '10000'
+    );    
+
+    
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '3',
+    '추천 shoes1',
+    '280',
+    '10000'
+    );       
+    
+    
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '3',
+    '추천 shoes1',
+    '290',
+    '10000'
+    ); 
+
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '4',
+    'Clothes1',
+    '90',
+    '10000'
+    );
+
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '4',
+    'Clothes1',
+    '95',
+    '10000'
+    );
+
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '4',
+    'Clothes1',
+    '100',
+    '10000'
+    );
+    
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '4',
+    'Clothes1',
+    '105',
+    '10000'
+    );
+
+
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '5',
+    'Accessory1',
+    'freeSize',
+    '10000'
+    );
+
+
+insert into t_option (p_id, p_name, p_option, p_price)
+    values(
+    '6',
+    'shoes1',
+    'freeSize',
+    '10000'
+    );
+    
+
+
