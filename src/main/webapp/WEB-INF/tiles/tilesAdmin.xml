@@ -15,12 +15,12 @@
 <!--		<put-attribute name="quickMenu" value="/WEB-INF/views/common/quickMenu.jsp" />-->
 	</definition>
 
-	<definition name="/admin/help/listHelp" extends="adminLayout">
+	<definition name="/admin/help/helpList" extends="adminLayout">
 		<put-attribute name="title" value="문의리스트 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/admin/help.css" />
-		<put-attribute name="body" value="/WEB-INF/views/admin/help/listHelp.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/help/helpList.jsp" />
 	</definition>
-	<definition name="/admin/help/modHelp" extends="adminLayout">
+	<definition name="/admin/help/modHelp/*" extends="adminLayout">
 		<put-attribute name="title" value="문의수정 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/admin/help.css" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/help/modHelp.jsp" />
@@ -35,32 +35,37 @@
 		<put-attribute name="dynamicCss" value="/resources/css/admin/main.css" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/main/main.jsp" />
 	</definition>
-	<definition name="/admin/member/listMember" extends="adminLayout">
+	<definition name="/admin/member/memberList" extends="adminLayout">
 		<put-attribute name="title" value="회원목록 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/admin/member.css" />
-		<put-attribute name="body" value="/WEB-INF/views/admin/member/listMember.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/member/memberList.jsp" />
 	</definition>
-	<definition name="/admin/member/modMember" extends="adminLayout">
+	<definition name="/admin/member/modMember/*" extends="adminLayout">
 		<put-attribute name="title" value="회원수정 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/admin/member.css" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/member/modMember.jsp" />
 	</definition>
-	<definition name="/admin/order/listOrder" extends="adminLayout">
+	<definition name="/admin/order/orderList" extends="adminLayout">
 		<put-attribute name="title" value="주문목록 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/admin/order.css" />
-		<put-attribute name="body" value="/WEB-INF/views/admin/order/listOrder.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/order/orderList.jsp" />
 	</definition>
 	<definition name="/admin/order/modOrder" extends="adminLayout">
 		<put-attribute name="title" value="주문수정 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/admin/order.css" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/order/modOrder.jsp" />
 	</definition>
-	<definition name="/admin/product/modProduct" extends="adminLayout">
+	<definition name="/admin/order/modOrder/*" extends="adminLayout">
+		<put-attribute name="title" value="주문수정 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/admin/order.css" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/order/modOrder.jsp" />
+	</definition>
+	<definition name="/admin/product/modProduct/*" extends="adminLayout">
 		<put-attribute name="title" value="상품 수정 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/admin/product.css" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/product/modProduct.jsp" />
 	</definition>
-	<definition name="/admin/product/listProduct" extends="adminLayout">
+	<definition name="/admin/product/productList" extends="adminLayout">
 		<put-attribute name="title" value="상품 목록 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/admin/product.css" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/product/productList.jsp" />

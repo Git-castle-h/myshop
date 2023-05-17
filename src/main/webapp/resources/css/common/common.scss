@@ -10,18 +10,11 @@
 
 body{
     font-family: "Swagger",sans-serif;
-	width:100vw;
 	overflow-x: hidden;
 	color:$lightGray;
 }
 
-.container {
-	padding-right: 15px;
-	padding-left: 15px;
-	margin-right: auto;
-	margin-left: auto;
-	
-  }
+
 
 .wrap{
 	padding-top: 1em;
@@ -59,6 +52,27 @@ body{
 		text-align: center;
 	}
 
+	&:focus{
+		border: 1px solid $superlightGray;
+		outline: none;
+	}
+  }
+
+  textarea, .textarea{
+	border: 1px solid $superlightGray;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+    padding:0.5em 0.6em;
+	resize: none;
+
+	&::placeholder{
+		color: $superlightGray;
+	}
+
+	&:focus{
+		border: 1px solid $superlightGray;
+		outline: none;
+	}
   }
 
   select,.select{
@@ -68,9 +82,7 @@ body{
     box-sizing: border-box;
 	position: relative;
 
-	&.w14{
-		width:14.5em;
-	}
+
 
 	ul.select_box{
 		position: absolute;
@@ -91,6 +103,7 @@ body{
 		position: relative;
 		box-sizing: border-box;
 		display: flex;
+		color:$lightGray;
 		background-color: #fff;
 		border-radius: 0.4em;
 		// justify-content: center;
@@ -101,14 +114,14 @@ body{
 		border: 0px;
 		line-height: 1.5;
 		cursor:pointer;
-
-		&.gray{
-			color:$superlightGray;
+		
+		&:hover{
+			color:#2d2d2d;
 		}
 
-		&:hover{
-			background-color: $superlightGray;
-			color:#fff;
+		&.disabled{
+			color:$superlightGray;
+			pointer-events: none;
 		}
 
 		.down{
@@ -134,8 +147,13 @@ body{
 
     a{
         text-decoration: none;
-        color:#2d2d2d;
+        color:inherit;
     }
+
+	span{
+		display: inline-block;
+		word-break: keep-all;
+	}
 
 	.btn_area{
 		display: flex;
@@ -168,6 +186,17 @@ body{
 		}
 	}
 
+	.btn3{
+		color: $lightGray;
+		background-color: #fff;
+		border-radius: 0.4em;
+		border:1px solid $lightGray;
+		&:hover{
+			background-color: $superlightGray;
+			border:1px solid $superlightGray;
+			color:#fff;
+		}
+	}
 	.page_top{
 		.page_title_wrap{
 			font-family: "Bangers",sans-serif;
@@ -176,11 +205,31 @@ body{
 			color:$lightGray;
 			padding-bottom: 0.5em;
 		}
+		.page_sub_title{
+			padding:0.3em 0;
+			ul{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				li{
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					padding:0 0.25em;
+					a{
+						font-size: 0.7em;
+						color:$superlightGray;
+					}
 
-	}
+				&.on,&:hover{
+					a{
+						color:$lightGray;
+					}
+				}
+				}
+			}
+		}
 
-	.page_context_wrap{
-		padding-bottom: 3em;
 	}
 
 	.form{
@@ -211,6 +260,7 @@ body{
 					padding-bottom: 0;
 				}
 			}
+		
 		}
 	}
 
@@ -261,25 +311,117 @@ body{
 		font-size: 0.8em;
 	}
 
-  	@media (min-width: $small) {
+
+	
 	.container {
-		width: $_small;
+		padding-right: 15px;
+		padding-left: 15px;
+		padding-bottom:3em;
+		margin-right: auto;
+		margin-left: auto;
+		max-width: 1440px;
+
+		@media (max-width: $wide) {
+			max-width: $_wide;
+		}
+		@media (max-width: $desktop) {
+			max-width: $_desktop;
+		}
+		@media (max-width: $tablet) {
+			max-width: $_tablet;
+		}
+		@media (max-width: $moblie) {
+			max-width: $_moblie;
+		}
+		@media (max-width: $small) {
+			max-width: $_small;
+		}
+
+		&.large{
+			max-width:100%;
+		}
+
+		&.small{
+			@media (max-width: $desktop) {
+				max-width: $_tablet;
+			}
+			@media (max-width: $tablet) {
+				max-width: $_tablet;
+			}
+			@media (max-width: $moblie) {
+				max-width: $_moblie;
+			}
+			@media (max-width: $small) {
+				max-width: $_small;
+			}
+		}
+		
 	}
-  	}
-	@media (min-width: $moblie) {
-	.container {
-	  width: $_moblie;
+
+	
+
+
+	// 색상
+	.cgray{
+		color:$lightGray;
+		&.cgray1{
+			color:$superlightGray;
+		}
+		&.cgray2{
+			color:$lightGray;
+		}
+		&.cgray3{
+			color: $deepGray;
+		}
 	}
+	
+
+	.corange{
+		color:$lightOrange;
+		&.corange1{
+			color:$lightOrange;	
+		}
+		&.corange2{
+			color:$lightOrange;
+		}
 	}
-  
-	@media (min-width: $tablet) {
-	.container {
-	  width: $_tablet;
+
+	.cblue{
+		color:$lightBlue;
+		&.cblue1{
+			color:$lightBlue;
+		}
+		&.cblue2{
+			color:$deepBlue;
+		}
 	}
+
+	//================
+
+	//넓이 관련
+
+	.w100{
+		width:100%;
 	}
-  
-	@media (min-width: $desktop) {
-	.container {
-	  width: $_desktop;
+
+	.w80{
+		width:80%;
 	}
+
+	.w50{
+		width:50%;
 	}
+
+	.w30{
+		width:30%;
+	}
+
+	.w20e{
+		width:20em;
+	}
+
+	.w14e{
+		width:14.5em;
+	}
+
+	//================

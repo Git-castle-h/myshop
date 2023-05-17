@@ -3,25 +3,12 @@ package com.myshop.ex01.admin.help.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-@Controller("adminHelpController")
-@RequestMapping("/admin/help")
-public class HelpController {
 
-    @RequestMapping(value="/listHelp", method = {RequestMethod.GET,RequestMethod.POST})
-    public String listHelp(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
-        String viewName = (String)request.getAttribute("viewName");        
-        return viewName;
-    }
-    
-    @RequestMapping(value="/modHelp", method = {RequestMethod.GET,RequestMethod.POST})
-    public String modHelp(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
-        String viewName = (String)request.getAttribute("viewName");        
-        return viewName;
-    }
+public interface HelpController {
+
+    public ModelAndView listHelp(HttpServletRequest request, HttpServletResponse response) throws Exception;
+    public ModelAndView modHelp(String h_number,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }

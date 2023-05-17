@@ -1,1 +1,90 @@
 @charset "UTF-8";
+
+@import "../common/variable.scss";
+
+
+.container{
+    .main_preview{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        max-width: 768px;
+        margin: 0 auto;
+        .event{
+            margin-bottom: 0.7em;
+            min-height: 10em;
+            border-radius: 0.5em;
+            box-sizing: border-box;
+            padding:1em;
+            color:#fff;
+            
+            &.main{
+                width: 100%;
+                min-height: 10em;
+                background-color: #FFCCCC;
+            }
+            &.sub{
+                width: calc(50% - 0.35em);
+                &.sub1{
+                    background-color: #FFC6A6;
+                }
+                &.sub2{
+                    background-color: #FFEBB8;
+                }
+            }
+
+            .title{
+                font-size: 2.5em;
+            }
+            .detail{
+                font-size: 1.5em;
+            }
+
+        }
+    }
+
+    .form{
+        padding-bottom: 1em;
+        max-width: 768px;
+        margin: 0 auto;
+        &:last-child{
+            padding-bottom: 0; 
+        }
+        .form_context{
+            .form_line{
+                &>*{
+                    margin-right: 0.2em;
+                }
+                .mj_id{
+
+                }
+                .btn{
+                    padding:0.5em;
+                }
+
+                p.context{
+                    width:100%;
+                    height:8em;
+                    overflow-y: scroll;
+                    border: 1px solid $superlightGray;
+                    border-radius: 0.4em;
+                    box-sizing: border-box;
+                    padding:0.5em 0.6em;
+                }
+
+                &.submit{
+                    .btn{
+                        width:calc(50% - 0.5em);
+                        padding:0.5em; 
+                        box-sizing: border-box;
+                        text-align: center;
+                        margin:0 0.25em;
+                    }
+                }
+            }
+        }
+        
+        
+    }
+    
+}

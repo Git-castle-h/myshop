@@ -35,12 +35,12 @@
 		<put-attribute name="dynamicCss" value="/resources/css/shopping/cart.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/cart/cartList.jsp" />
 	</definition>
-	<definition name="/help/listHelp" extends="shoppingLayout">
+	<definition name="/help/helpList" extends="shoppingLayout">
 		<put-attribute name="title" value="문의 목록 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/shopping/help.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/help/listHelp.jsp" />
 	</definition>
-	<definition name="/help/memberHelp" extends="shoppingLayout">
+	<definition name="/help/memberHelp/*" extends="shoppingLayout">
 		<put-attribute name="title" value="문의 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/shopping/help.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/help/memberHelp.jsp" />
@@ -55,22 +55,32 @@
 		<put-attribute name="dynamicCss" value="/resources/css/shopping/member.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/member/memberJoin.jsp" />
 	</definition>
-	<definition name="/mypage/memberConfirm" extends="shoppingLayout">
+	<definition name="/mypage/mypageConfirm" extends="shoppingLayout">
 		<put-attribute name="title" value="멤버확인 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/shopping/mypage.css" />
-		<put-attribute name="body" value="/WEB-INF/views/shopping/mypage/memberConfirm.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/shopping/mypage/mypageConfirm.jsp" />
+	</definition>
+	<definition name="/mypage/mypageModInfo" extends="shoppingLayout">
+		<put-attribute name="title" value="멤버 정보수정 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/mypage.css" />
+		<put-attribute name="body" value="/WEB-INF/views/shopping/mypage/mypageModInfo.jsp" />
+	</definition>
+	<definition name="/order/order" extends="shoppingLayout">
+		<put-attribute name="title" value="주문하기 페이지" />
+		<put-attribute name="dynamicCss" value="/resources/css/shopping/order.css" />
+		<put-attribute name="body" value="/WEB-INF/views/shopping/order/order.jsp" />
 	</definition>
 	<definition name="/order/orderList" extends="shoppingLayout">
 		<put-attribute name="title" value="주문목록 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/shopping/order.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/order/orderList.jsp" />
 	</definition>
-	<definition name="/product/productDetail" extends="shoppingLayout">
+	<definition name="/product/productDetail/*" extends="shoppingLayout">
 		<put-attribute name="title" value="상품 상세 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/shopping/product.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/product/productDetail.jsp" />
 	</definition>
-	<definition name="/product/productList" extends="shoppingLayout">
+	<definition name="/product/productList/*" extends="shoppingLayout">
 		<put-attribute name="title" value="상품 목록 페이지" />
 		<put-attribute name="dynamicCss" value="/resources/css/shopping/product.css" />
 		<put-attribute name="body" value="/WEB-INF/views/shopping/product/productList.jsp" />

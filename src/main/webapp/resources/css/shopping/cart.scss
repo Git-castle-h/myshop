@@ -1,1 +1,310 @@
 @charset "UTF-8";
+@import "../common/variable.scss";
+
+.cartList_wrap{
+
+    .container{
+        .page_context_wrap{
+            .form{
+                .form_title{
+                    .left{
+                        .cart_check_all_label{
+                            font-size: 0.8em;
+                        }
+                    }
+                    .right{
+                        .cart_del_btn{
+                            font-size: 0.7em;
+                            padding:0.5em 0.7em;
+                        }
+                    }
+                }
+                .form_context{
+                    margin-bottom: 0.2em;
+                    .cart_line{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding-bottom: 0.7em;
+                        margin-bottom: 0.7em;
+                        border-bottom: 1px solid $superlightGray;
+                        &:last-child{
+                            padding-bottom: 0em;
+                            margin-bottom: 0em;
+                            border: 0px;
+                        }
+                        .box{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                            
+                            .txt{
+                                max-width: 100%;
+                                white-space: nowrap;
+                                overflow-x: hidden;
+                                text-overflow: ellipsis;
+                            }
+
+                            &.img_box{
+                                min-width:5em;
+                                width:15%;
+                                flex-shrink: 0;
+                                flex-direction: row;
+                                .cart_line_select{
+                                    margin-right: 1em;
+                                }
+                                .img{
+                                    width:5em;
+                                    height:5em;
+                                    background-color: $superlightGray;
+                                    border-radius: 0.5em;
+                                }
+                            }
+                            &.name_box{
+                                flex-direction: row;
+                                width:30%;
+                                .text{
+                                    margin-right: 1em;
+                                    .category{
+
+                                    }
+                                    .name{
+
+                                    }
+                                }
+                                .delete{
+                                    width:2em;
+                                    font-size: 1em;
+                                    .delete_btn{
+                                        width:1em;
+                                        box-sizing: content-box;
+                                        background-color: #fff;
+                                        height:1em;
+                                        padding:0.2em;
+                                        border-radius: 0.25em;
+                                        color:$superlightGray;
+                                        border: 1px solid $superlightGray;
+
+                                        &:hover{
+                                            background-color: $superlightGray;
+                                            color:#fff;
+                                        }
+                                    }
+                                }
+                            }
+                            &.option_box{
+                                width:45%;
+                                text-align: left;
+                                align-items: flex-start;
+                                box-sizing: border-box;
+                                padding-left: 1.5em;    
+                                
+                                &>div{
+                                    padding-bottom: 0.1em;
+                                    &:last-child{
+                                        padding-bottom: 0;
+                                    }
+                                }
+                                .mod{
+                                    .mod_btn{
+                                        font-size: 0.8em;
+                                        box-sizing: content-box;
+                                        background-color: #fff;
+                                        padding:0.2em 0.4em;
+                                        border-radius: 0.25em;
+                                        color:$superlightGray;
+                                        border: 1px solid $superlightGray;
+                                        &:hover{
+                                            background-color: $superlightGray;
+                                            color:#fff;
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.price_box{
+                                width:10%;
+                            }
+                        }
+                    }
+
+                    .order_sum{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width:100%;
+                        border-top: 3px solid $superlightGray;
+
+                        .sum_left{
+                            padding:0.5em 1em;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            .sum_box{
+                                margin:1em;
+                                font-size: 1em;
+                                color:$lightGray;
+                                .top{
+                                
+                                }
+                                .bottom{
+
+                                }
+
+                                &.price_discount{
+                                    color:#FF8540;
+                                }
+
+                                &.final_sum{
+                                    color:#2d2d2d;
+                                }
+
+                                &.sign{
+                                    font-size: 1.3em;
+                                    color:$superlightGray;
+                                }
+                            }
+                        }
+                        .sum_right{
+                            .order_btn{
+                                padding:0.5em 1em;
+                            }   
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.modal_wrap{
+    display: none;
+    &.on{display: block;}
+    position:fixed;
+    width:100vw;
+    height:100vh;
+    top:0;
+    left:0;
+    opacity: 0;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+
+    animation-name: modal_appear;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+
+    @keyframes modal_appear {
+        from{opacity: 0;}
+        to{opacity: 1;}
+    }
+
+    .modal_context{
+        max-width:60vh;
+        width:100%;
+        position:absolute;
+        padding:0.5em;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        background-color: #fff; 
+
+        .modal_top{
+            padding-bottom: 0.5em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .product_box{
+                width:calc(50% - 0.25em);
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .img_box{
+                    margin-right: 0.5em;
+                    .img{
+                        width:5em;
+                        height:5em;
+                        background-color: $superlightGray;
+                        border-radius: 0.5em;
+                    }
+                }
+                .context_box{
+                    margin-right: 0.5em;
+                    padding:0.5em 0;
+                    .name{
+                        font-size: 1em;
+                        color:#2d2d2d;
+                    }
+                    .price{
+                        font-size: 0.8em;
+                    }
+                    .detail{
+                        font-size: 0.8em;
+                    }
+                }
+            }
+
+            .num_box{
+                width:calc(50% - 0.25em);
+                .decide_num{
+                    width:auto;
+                    padding:0.25em;
+                    border-radius: 0.5em;
+                    border: 1px solid $superlightGray;
+                    color:$deepGray;
+                    .sign{
+                        padding:0.25em;
+                        border:0px;
+                        background-color: rgba($color: #000000, $alpha: 0);
+                        cursor:pointer;
+                        color:$lightGray;
+                        &.plus{
+        
+                        }
+                        &.minus{
+        
+                        }
+                        &:hover{
+                            color:rgba($color: $deepGray, $alpha: 1);
+                        }
+                    }
+                    .decide_num_input{
+                        width:1.5em;
+                        padding:0.25em;
+                        border: 0px;
+                        text-align: center;
+                    }
+                }
+            }
+            
+        }
+
+        .modal_bottom{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .selection_box{
+                width:100%;
+            }
+
+        }
+
+        .submit{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            .btn_area{
+                .btn{
+                    width: 7em;
+                    padding: 0.5em;
+                    box-sizing: border-box;
+                    text-align: center;
+                    margin: 0 0.25em;
+                }
+            }
+        }
+
+    }
+}

@@ -5,16 +5,17 @@
 <div class="header_wrap">
     <div class="container">
         <div class="logo">
-            LOGO
+            <a href="${contextPath}/main/main">LOGO</a>
         </div>
         <div class="menu_wrap">
             <ul>
-                <li><a href="">CLOTHES</a></li>
-                <li><a href="">ACCESSORY</a></li>
-                <li><a href="">SHOES</a></li>
-                <li><a href="" class="cart"><span class="menuIco"><i class="fa-solid fa-bag-shopping"></i></span>&nbsp;CART</a></li>
-                <li><a href="" class="login"><span class="menuIco"><i class="fa-solid fa-power-off"></i></span>&nbsp;LOGIN</a></li>
-                <li><a href="">HELP</a></li>
+                <li><a href="${contextPath}/product/productList/clothes">CLOTHES</a></li>
+                <li><a href="${contextPath}/product/productList/accessory">ACCESSORY</a></li>
+                <li><a href="${contextPath}/product/productList/shoes">SHOES</a></li>
+                <li><a href="${contextPath}/cart/cartList" class="cart"><span class="menuIco"><i class="fa-solid fa-bag-shopping"></i></span>&nbsp;CART</a></li>
+                <li><a href="${contextPath}/login/login" class="login"><span class="menuIco"><i class="fa-solid fa-power-off"></i></span>&nbsp;LOGIN</a></li>
+                <li><a href="${contextPath}/order/orderList" class="order"><span class="menuIco"></span>MYPAGE</a></li>
+                <li><a href="${contextPath}/help/helpList">HELP</a></li>
             </ul>
         </div>
     </div>

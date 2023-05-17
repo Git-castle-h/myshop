@@ -1,1 +1,288 @@
 @charset "UTF-8";
+
+@import "../common/variable.scss";
+
+.orderList_wrap{
+
+    .container{
+        .page_context_wrap{
+            .member_select_wrap{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+
+                &>div{
+                    margin-right: 0.4em;
+                }
+
+                .search_select{
+                    min-width:10em;
+                }
+
+                .btn_area{
+                    .search_btn{
+                        padding:0.5em;
+                    }
+                }
+
+            }
+
+
+            .form{
+
+                font-size: 0.8em;
+
+                .form_title{
+                    .left{
+                    }
+                }
+                .form_context{
+                    margin-bottom: 0.2em;
+                    &.orderList{
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                    }
+                    .order_line{
+                        width:100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding-bottom: 0.3em;
+                        margin-bottom: 0.3em;
+                        border-bottom: 1px solid $superlightGray;
+                        
+                        &:nth-last-child(1){
+                            padding-bottom: 0em;
+                            margin-bottom: 0em;
+                            border: 0px;
+                            
+                        }
+
+
+                        
+                        .box{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            min-width: 6em;
+
+                            .txt{
+                                width: 100%;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                            }
+
+                            .tag{
+                                color:$superlightGray;
+                                margin-right: 0.2em;
+                            }
+
+                            .status{
+                                font-size: 0.9em;
+                                padding:0.3em 0.5em;
+                                background-color: $lightGray;
+                                border-radius: 0.3em;
+                                color:$superlightGray;
+
+                                &.on{
+                                    background-color: $lightBlue;   
+                                    color:#fff;
+                                }
+                            }
+
+                            &.id_box{
+                                width:7.5%;
+                                text-align: left;
+                                justify-content: flex-start;
+                            }
+
+                            &.name_box{
+                                width:7.5%;
+                                color:$superlightGray;
+                            }
+
+                            &.option_box{
+                                width:30%;
+                                text-align: center;
+                            }
+
+                            &.address_box{
+                                width:32.5%;
+                                text-align: center;
+                            }
+
+                            &.request_box{
+                                width:7.5%;
+                                .status{
+
+                                }
+                            }
+
+                            &.shipping_box{
+                                width: 7.5%;
+                                .status{
+                                    &.order{
+                                        background-color: #80A8BF;
+                                        color: #fff;
+                                    }
+                                    &.s_ready{
+                                        background-color: #67A79B;
+                                        color: #fff;
+                                    }
+                                    &.s_ing{
+                                        background-color: $lightBlue;
+                                        color: #fff;
+                                    }
+                                    &.s_complete{
+
+                                    }
+                                }
+                            }
+
+                            &.confirm_box{
+                                width:7.5%;
+                                .status{
+                                    &.off{
+                                        background-color: $lightRed;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                }
+            }
+        }
+    }
+
+    }
+}
+
+.modOrder_wrap{
+
+
+        .modOrder_top{
+            padding-bottom: 0.5em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .product_box{
+                width:calc(50% - 0.25em);
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .img_box{
+                    margin-right: 0.5em;
+                    .img{
+                        width:5em;
+                        height:5em;
+                        background-color: $superlightGray;
+                        border-radius: 0.5em;
+                    }
+                }
+                .context_box{
+                    margin-right: 0.5em;
+                    padding:0.5em 0;
+                    .name{
+                        font-size: 1em;
+                        color:#2d2d2d;
+                    }
+                    .price{
+                        font-size: 0.8em;
+                    }
+                    .detail{
+                        font-size: 0.8em;
+                    }
+                }
+            }
+
+            .num_box{
+                width:calc(50% - 0.25em);
+                .decide_num{
+                    width:auto;
+                    padding:0.25em;
+                    border-radius: 0.5em;
+                    border: 1px solid $superlightGray;
+                    color:$deepGray;
+                    .sign{
+                        padding:0.25em;
+                        border:0px;
+                        background-color: rgba($color: #000000, $alpha: 0);
+                        cursor:pointer;
+                        color:$lightGray;
+                        &.plus{
+        
+                        }
+                        &.minus{
+        
+                        }
+                        &:hover{
+                            color:rgba($color: $deepGray, $alpha: 1);
+                        }
+                    }
+                    .decide_num_input{
+                        width:1.5em;
+                        padding:0.25em;
+                        border: 0px;
+                        text-align: center;
+                    }
+                }
+            }
+            
+        }
+
+        .modOrder_bottom{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            .section{
+                width:calc(50% - 0.25em);
+                margin-top: 1em;
+                @media (max-width: $moblie) {
+                    width:100%;
+                }
+            }
+
+            .left{
+                .selection_box{
+
+                }
+            }
+            .right{
+                .address{
+                    .form_line{
+                        input.address{
+                            width:100%;
+                        }
+                        .btn{
+                            padding:0.5em;
+                        }
+                    }
+                }
+            }
+            
+
+        }
+
+        .submit{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 2.5em;
+            .btn_area{
+                padding:0;
+                .btn{
+                    width: 7em;
+                    padding: 0.5em;
+                    box-sizing: border-box;
+                    text-align: center;
+                    margin: 0 0.25em;
+                }
+            }
+        }
+
+
+}

@@ -1,1 +1,215 @@
 @charset "UTF-8";
+@import "../common/variable.scss";
+
+
+.memberHelp_wrap{
+
+    .container{
+        max-width: 768px;
+
+        .form{
+            padding-bottom: 3em;
+            &:last-child{
+                padding-bottom: 0; 
+            }
+            .form_context{
+                .form_line{
+                    &>*{
+                        margin-right: 0.2em;
+                    }
+                    .mj_id{
+
+                    }
+                    .btn{
+                        padding:0.5em;
+                    }
+
+                    p.context{
+                        width:100%;
+                        height:8em;
+                        overflow-y: scroll;
+                        border: 1px solid $superlightGray;
+                        border-radius: 0.4em;
+                        box-sizing: border-box;
+                        padding:0.5em 0.6em;
+                    }
+                    
+                    .mh_select_help{
+                        font-size: 0.9em;
+                    }
+
+                    .mh_context{
+                        min-height: 15em;
+                    }
+                }
+                
+                .submit{
+                    .btn{
+                        width:7em;
+                        padding:0.5em; 
+                        box-sizing: border-box;
+                        text-align: center;
+                        margin:0 0.25em;
+
+                        &.back{
+                            width:12em;
+                        }
+                    }
+                }
+
+            }
+            
+
+        }
+
+
+    }
+
+}
+
+.helpList_wrap{
+
+    .container{
+        .page_context_wrap{
+            .form{
+                .form_title{
+                    .left{
+                    }
+                    .right{
+                        .help_btn{
+                            font-size: 0.8em;
+                            padding:0.3em 0.5em;
+                        }
+                    }
+                }
+                .form_context{
+                    margin-bottom: 0.2em;
+                    .help_line{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding-bottom: 0.7em;
+                        margin-bottom: 0.7em;
+                        border-bottom: 1px solid $superlightGray;
+                        &:last-child{
+                            padding-bottom: 0em;
+                            margin-bottom: 0em;
+                            border: 0px;
+                        }
+                        .box{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                            
+                            .txt{
+                                max-width: 100%;
+                                white-space: nowrap;
+                                overflow-x: hidden;
+                                text-overflow: ellipsis;
+                            }
+
+                            &.img_box{
+                                min-width:4.5em;
+                                width:10%;
+                                justify-content: flex-start;
+                                flex-shrink: 0;
+                                flex-direction: row;
+                                .img{
+                                    width:4em;
+                                    height:4em;
+                                    background-color: $superlightGray;
+                                    border-radius: 0.5em;
+                                }
+                            }
+                            &.title_box{
+                                flex-direction: row;
+                                width:80%;
+                                justify-content: flex-start;
+                                text-align: left;
+                                .text{
+                                    margin-right: 1em;
+                                    .title{
+                                        font-size: 1em;
+                                        color:$lightGray;
+                                    }
+                                    .category{
+                                        font-size: 0.8em;
+                                        color:$superlightGray;
+                                    }
+                                }
+                            }
+
+                            &.status_box{
+                                width:10%;
+                                min-width:4em;
+                                font-size: 0.8em;
+                                .status{
+                                    .wait{
+
+                                    }
+                                    .complete{
+                                        color:$lightBlue;
+                                    }
+                                }
+                                .modify{
+                                    font-size: 0.9em;
+                                    color:$lightGray;
+
+                                    .modbtn{
+                                        padding:0.2em 0.5em;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .order_sum{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width:100%;
+                        border-top: 3px solid $superlightGray;
+
+                        .sum_left{
+                            padding:0.5em 1em;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            .sum_box{
+                                margin:1em;
+                                font-size: 1em;
+                                color:$lightGray;
+                                .top{
+                                
+                                }
+                                .bottom{
+
+                                }
+
+                                &.price_discount{
+                                    color:#FF8540;
+                                }
+
+                                &.final_sum{
+                                    color:#2d2d2d;
+                                }
+
+                                &.sign{
+                                    font-size: 1.3em;
+                                    color:$superlightGray;
+                                }
+                            }
+                        }
+                        .sum_right{
+                            .order_btn{
+                                padding:0.5em 1em;
+                            }   
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

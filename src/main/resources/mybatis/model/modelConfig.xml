@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+	
+		<typeAlias type="com.myshop.ex01.shopping.cart.vo.CartVO" alias="CartVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.member.vo.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.help.vo.HelpVO" alias="HelpVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.main.vo.BannerVO" alias="BannerVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.main.vo.Banner_imageVO" alias="Banner_imageVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.member.vo.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.order.vo.OrderVO" alias="OrderVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.product.vo.ProductVO" alias="ProductVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.product.vo.Product_imageVO" alias="Product_imageVO"/>
+		
+		<!-- admin -->
+		<typeAlias type="com.myshop.ex01.admin.help.vo.Admin_helpVO" alias="Admin_helpVO"/>
+		<typeAlias type="com.myshop.ex01.admin.main.vo.Admin_bannerVO" alias="Admin_bannerVO"/>
+		<typeAlias type="com.myshop.ex01.admin.main.vo.Admin_banner_imageVO" alias="Admin_banner_imageVO"/>
+		<typeAlias type="com.myshop.ex01.admin.member.vo.Admin_memberVO" alias="Admin_memberVO"/>
+		<typeAlias type="com.myshop.ex01.admin.order.vo.Admin_orderVO" alias="Admin_orderVO"/>
+		<typeAlias type="com.myshop.ex01.admin.product.vo.Admin_product_imageVO" alias="Admin_product_imageVO"/>
+		<typeAlias type="com.myshop.ex01.admin.product.vo.Admin_productVO" alias="Admin_productVO"/>
+		
+	</typeAliases>
+</configuration>

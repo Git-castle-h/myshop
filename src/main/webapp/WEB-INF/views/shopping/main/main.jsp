@@ -61,7 +61,7 @@
             </div>
         </div>
     </div>
-    <script src="${contextPath}/resources/js/swiper-bundle.min.js"></script>
+    <script src="${contextPath}/resources/js/common/swiper-bundle.min.js"></script>
     <script>
         const swiper1 = new Swiper('.bestSwiper', {
             slidesPerView: "auto",

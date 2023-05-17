@@ -1,7 +1,10 @@
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <!-- 추가할부분 -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@taglib prefix ="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix ="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
+<input id="contextPath" type="hidden" value="${contextPath}">
+<script> let contextPath = document.querySelector("#contextPath").value; </script>
 <div class="productDetail_wrap">
 	<div class="container">
 		<div class="page_top">
@@ -35,11 +38,13 @@
 				<div class="selection_box">
 					<div class="title">SELECT</div>
 					<div class="select_wrapper1 select">
+						<input type="hidden" class="select_input"/>
 						<button class="option toggle_btn"><span class="txt">OPTION</span><i class="down fa-solid fa-chevron-down"></i></button>
 						<ul class="select_box hide">
-							<li><button class="option select_btn"><span class="txt">OPTION</span></button></li>
-							<li><button class="option select_btn"><span class="txt">SELECTED</span></button></li>
+							<li><button class="option select_btn disabled"><span class="txt">OPTION</span></button></li>
+							<li><button class="option select_btn" data-value="SELECTED"><span class="txt">SELECTED</span></button></li>
 						</ul>
+						<script src="${contextPath}/resources/js/product/select_wrapper1.js"></script>
 					</div>
 				</div>
 				<div class="decide_box">
@@ -53,16 +58,17 @@
 								<input type="tel" name="decide_num" class="plusMinus_input" value="1">
 								<button class="plus sign">+</button>
 							</div>
+							<script src="${contextPath}/resources/js/product/plusMinusInput.js"></script>
 						</div>
 					</div>
 				</div>
 				<div class="buy_box">
-					<button href="" class="buy_btn btn btn1">BUY</button>
-					<button href="" class="cart_btn btn btn2">CART</button>
+					<button  class="buy_btn btn btn1">BUY</button>
+					<button onclick="javascript:window.history.back();" class="cart_btn btn btn2">CANCEL</button>
 				</div>
 				
 			</div>
 		</div>
 	</div>
-		<script src="${contextPath}/resources/js/product/select_detail.js"></script>
+	<script src="${contextPath}/resources/js/product/productDetail.js"></script>
 </div>

@@ -99,24 +99,23 @@
 				</div>
 				<div class="form_context">
 						<div class="form_line">
-						<div class="select_wrapper1 select w14">
+						<div class="select_wrapper1 select w14e">
 							<button class="option toggle_btn"><span class="txt">직업선택</span><i class="down fa-solid fa-chevron-down"></i></button>
 							<ul class="select_box hide">
-								<li><button class="option select_btn gray"><span class="txt">직업선택</span></button></li>
+								<li><button class="option select_btn disabled"><span class="txt">직업선택</span></button></li>
 								<li><button class="option select_btn"><span class="txt">학생</span></button></li>
 								<li><button class="option select_btn"><span class="txt">직장인</span></button></li>
 							</ul>
 						</div>
 						</div>
-						<script src="${contextPath}/resources/js/member/select_master.js"></script>
 						<script src="${contextPath}/resources/js/member/select_wrapper1.js"></script>
 				</div>
 				<div class="form_context">
 					<div class="form_line">
-						<div class="select_wrapper2 select w14">
+						<div class="select_wrapper2 select w14e">
 							<button class="option toggle_btn"><span class="txt">가입경로</span><i class="down fa-solid fa-chevron-down"></i></button>
 							<ul class="select_box hide">
-								<li><button class="option select_btn gray"><span class="txt">가입경로</span></button></li>
+								<li><button class="option select_btn disabled"><span class="txt">가입경로</span></button></li>
 								<li><button class="option select_btn"><span class="txt">학생</span></button></li>
 								<li><button class="option select_btn"><span class="txt">기타</span></button></li>
 							</ul>

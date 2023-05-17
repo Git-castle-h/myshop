@@ -2,9 +2,9 @@ let select_wrapper2 = document.querySelector(".select_wrapper2");
 let select_wrapper2_etc = document.querySelector(".select_wrapper2_etc");
 
 select_wrapper2.addEventListener("click",function(e){
-    toggle_btn = e.currentTarget.querySelector(".toggle_btn");
-    select_box = e.currentTarget.querySelector(".select_box");
-    select_btn = e.currentTarget.querySelectorAll(".select_btn");
+    let toggle_btn = e.currentTarget.querySelector(".toggle_btn");
+    let select_box = e.currentTarget.querySelector(".select_box");
+    let select_btn = e.currentTarget.querySelectorAll(".select_btn");
 
     document.addEventListener("click",function(e){
         if(e.target.classList.contains("select")||e.target.closest(".select")){

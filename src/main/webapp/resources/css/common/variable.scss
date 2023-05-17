@@ -1,13 +1,16 @@
 // view
+$wide:1440px;
 $desktop:1200px;
 $tablet:992px;
 $moblie:768px;
 $small:500px;
 
-$_desktop:1170px;
-$_tablet:970px;
-$_moblie:750px;
-$_small:470px;
+$_wide:1280px;
+$_desktop:970px;
+$_tablet:750px;
+$_moblie:470px;
+$_small:300px;
+
 
 //color
 
@@ -20,3 +23,7 @@ $deepOrange:#f57f07;
 $superlightGray:#D9D9D9;
 $lightGray:#838383;
 $deepGray:#4e4e4e;
+
+$black:#2d2d2d;
+
+$lightRed : #FF0000;

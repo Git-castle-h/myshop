@@ -3,24 +3,10 @@ package com.myshop.ex01.admin.product.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-@Controller("adminProductController")
-@RequestMapping("/admin/product")
-public class ProductController {
+public interface ProductController {
 	
-	@RequestMapping(value="/modProduct", method = {RequestMethod.GET,RequestMethod.POST})
-    public String modProduct(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
-        String viewName = (String)request.getAttribute("viewName");        
-        return viewName;
-    }
-	
-	@RequestMapping(value="/listProduct", method = {RequestMethod.GET,RequestMethod.POST})
-    public String listProduct(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
-        String viewName = (String)request.getAttribute("viewName");        
-        return viewName;
-    }
+    public ModelAndView modProduct(String productID,HttpServletRequest request, HttpServletResponse response) throws Exception;
+    public ModelAndView productList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

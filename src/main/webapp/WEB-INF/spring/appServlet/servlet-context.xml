@@ -13,7 +13,7 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-<!--	<resources mapping="/resources/**" location="/resources/" />-->
+	<resources mapping="/resources/**" location="/resources/" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
@@ -33,6 +33,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/*/*"/>
 			<mvc:mapping path="/*/*/*"/>
+			<mvc:mapping path="/*/*/*/*"/>
 			<beans:bean class="com.myshop.ex01.common.interceptor.ViewNameInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

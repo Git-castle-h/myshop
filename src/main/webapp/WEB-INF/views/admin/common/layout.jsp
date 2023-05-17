@@ -16,7 +16,8 @@
 	<link rel="stylesheet" href="${contextPath}<tiles:getAsString name="layoutCss"/>">
   	<link rel="stylesheet" href="${contextPath}<tiles:getAsString name="dynamicCss"/>">
     <script src="https://kit.fontawesome.com/06b2da71d8.js" crossorigin="anonymous"></script>
-  	<script src="${contextPath}/resources/js/minHeight.js"></script>
+    <script src="${contextPath}/resources/js/common/jquery-3.6.4.min.js"></script>
+    <script src="${contextPath}/resources/js/common/minHeight.js"></script>
     <title><tiles:insertAttribute name="title" /></title>
 </head>
 <body>
@@ -34,4 +35,4 @@
         </div>
     </div>
 </body>
-</html>de 2
+</html>

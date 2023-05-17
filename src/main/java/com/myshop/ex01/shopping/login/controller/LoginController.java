@@ -1,35 +1,17 @@
 package com.myshop.ex01.shopping.login.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Controller("loginController")
-@RequestMapping("/login")
-public class LoginController {
+import org.springframework.web.servlet.ModelAndView;
 
-    @RequestMapping("/login")
-    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String viewName = (String)request.getAttribute("viewName");
-        System.out.println(viewName);
-        ModelAndView mav = new ModelAndView(viewName);
-        return mav;
-    }
 
-    @RequestMapping("/idFind")
-    public ModelAndView idFind(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String viewName = (String)request.getAttribute("viewName");
-        ModelAndView mav = new ModelAndView(viewName);
-        return mav;
-    }
+public interface LoginController {
 
-    @RequestMapping("/pwReset")
-    public ModelAndView pwReset(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String viewName = (String)request.getAttribute("viewName");
-        ModelAndView mav = new ModelAndView(viewName);
-        return mav;
-    }
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception;
+    public ModelAndView loginDo(Map<String,String> loginMap,HttpServletRequest request, HttpServletResponse response) throws Exception;
+    public ModelAndView idFind(HttpServletRequest request, HttpServletResponse response) throws Exception;
+    public ModelAndView pwReset(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
