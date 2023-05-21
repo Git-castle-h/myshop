@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.order">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="orderResult" type="OrderVO">
+		<result property="m_id" column="m_id" />
+		<result property="p_id" column="p_id" />
+		<result property="p_name" column="p_name" />
+		<result property="p_price" column="p_price" />
+		<result property="o_number" column="o_number" />
+		<result property="o_status" column="o_status" />
+		<result property="o_address" column="o_address1" />
+		<result property="o_address" column="o_address2" />
+		<result property="o_address" column="o_address3" />
+
+	</resultMap>	
+	
+     <select id="s_orderList" parameterType="String" resultMap="java.util.Map"   >
+        <![CDATA[
+      		select * from t_order
+	    ]]>
+	</select>
+	
+	<select id="s_helpById" resultMap="helpResult"   parameterType="String"  >
+	    <![CDATA[
+	    	select * from t_order where m_id = #{m_id}
+    	]]>
+	</select>
+	
+	
+	<insert id="addOrder" parameterType="OrderVO"   >
+	    	    <![CDATA[
+
+		   insert into t_order(
+		                m_id, 
+		                p_id,
+		                o_id,
+	                    p_name,
+	                    p_price,
+	                    o_status,
+	                    o_number,
+						o_address1,
+						o_address2,
+						o_address3
+
+  			values(
+  			      #{m_id},
+  			      #{p_id},
+  			      #{o_id},
+  			      #{p_name},
+  			      #{p_price},
+  			      #{o_status},
+  			      #{o_number},
+  			      #{o_address1},
+  			      #{o_address2},
+  			      #{o_address3}
+  			      
+ 			 )
+		]]>
+	</insert> 
+	
+	<update id="updateOrder" parameterType="java.util.Map"   >
+		   update t_order(
+			<set> 	
+			      <if test=" o_status!='' and o_status!=null">
+			        o_status=#{o_status},
+			      </if>
+    		      <if test=" o_number!='' o_number!=null">
+			        o_number=#{o_number},
+			      </if>
+			      <if test=" o_address1!='' o_address1!=null">
+			        o_address1=#{o_address1},
+			      </if>
+			      <if test=" o_address2!='' o_address2!=null">
+			        o_address2=#{o_address2},
+			      </if>
+			      <if test=" o_address3!='' o_address3!=null">
+			        o_address3=#{o_address3},
+			      </if>
+		    </set>
+    	    where 
+	    	o_id=#{o_id}
+	</update> 
+  
+	<delete id="deleteOrder" parameterType="String">
+		  delete from t_order
+		  where o_id=#{o_id}
+	</delete>
+	
+
+</mapper>

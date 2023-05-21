@@ -30,6 +30,7 @@ public class HelpControllerImpl implements HelpController {
     		@PathVariable("h_number")String h_number,
     		HttpServletRequest request,
     		HttpServletResponse response) throws Exception{
+    	
     	String viewName = (String)request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView(viewName);
         return mav;

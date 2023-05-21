@@ -29,9 +29,29 @@ public class LoginControllerImpl implements LoginController {
     	
     	System.out.println(loginMap);
     	
-        String viewName = (String)request.getAttribute("viewName");
-        System.out.println(viewName);
-        ModelAndView mav = new ModelAndView(viewName);
+    	String m_id = loginMap.get("user_id");
+    	String m_pw = loginMap.get("user_pw");
+    	
+    	String viewName = (String)request.getAttribute("viewName");
+        ModelAndView mav = new ModelAndView();
+        
+        System.out.println("id : "+m_id);
+        System.out.println("pw : "+m_pw);
+        
+    	//임시 로그인기능
+    	if(m_id.equals("sampleId")&& m_pw.equals("1234")) {
+    	
+    		viewName = "redirect:/main/main";
+    		mav.addObject("m_id",m_id);
+    		System.out.println(m_id+" 로그인 성공");
+    	}else {
+    		viewName = "redirect:/login/login";
+    		mav.addObject("error","fail");
+    	}
+        
+    	System.out.println(viewName);
+    	
+    	mav.setViewName(viewName);
         return mav;
     }
 

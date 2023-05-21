@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.banner">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="bannerResult" type="BannerVO">
+		<result property="banner_name" column="banner_name" />
+		<result property="banner_title" column="banner_title" />
+		<result property="banner_detail" column="banner_detail" />
+		<result property="banner_link" column="banner_link" />
+		<result property="banner_color" column="banner_color" />
+	</resultMap>
+	
+	<resultMap id="bannerImageResult" type="Banner_imageVO">
+		<result property="banner_name" column="banner_name" />
+		<result property="banner_image_type" column="banner_image_type" />
+		<result property="banner_image_id" column="banner_image_id" />
+		<result property="banner_image_name" column="banner_image_name" />
+	</resultMap>		
+   
+     <select id="s_bannerList" parameterType="String" resultMap="java.util.Map"   >
+        <![CDATA[
+      		select * from t_banner
+	    ]]>
+	</select>
+	
+     <select id="s_bannerImage" parameterType="String" resultMap="java.util.Map"   >
+        <![CDATA[
+      		select * from t_banner_image
+      		where banner_name = #{banner_name}
+	    ]]>
+	</select>
+	
+
+	
+	<insert id="addBanner" parameterType="BannerVO"   >
+   	    <![CDATA[
+		   insert into t_banner(
+		                banner_name, 
+		                banner_title,
+            		    banner_detail,
+	                    banner_link,
+	                    banner_color
+
+  			values(
+		  			      #{banner_name},
+		  			      #{banner_title},
+		  			      #{banner_detail},
+		  			      #{banner_link},
+		  			      #{banner_color}
+ 			 )
+		]]>
+	</insert> 
+	
+	<update id="updateBanner" parameterType="java.util.Map"   >
+		   update t_banner(
+			<set> 	
+			      <if test=" banner_title!='' banner_title!=null">
+			        banner_title=#{banner_title},
+			      </if>
+			      <if test=" banner_detail!='' banner_detail!=null">
+			        banner_detail=#{banner_detail},
+			      </if>
+    			  <if test=" banner_link!='' banner_link!=null">
+			        banner_link=#{banner_link},
+			      </if>
+			      <if test=" banner_color!='' banner_color!=null">
+			        banner_color=#{banner_color},
+			      </if>
+		    </set>
+    	    where 
+	    	banner_name=#{banner_name}
+	</update> 
+	
+	
+	<insert id="addBannerImage" parameterType="Banner_imageVO"   >
+   	    <![CDATA[
+		   insert into t_banner_image(
+		                banner_name, 
+		                banner_image_type,
+            		    banner_image_id,
+	                    banner_image_name,
+	                    banner_image_date
+
+  			values(
+	  			      #{banner_name},
+	  			      #{banner_image_type},
+	  			      #{banner_image_id},
+	  			      #{banner_image_name},
+	  			      #{banner_image_date}
+ 			 )
+		]]>
+	</insert> 
+	
+	<update id="updateBannerImage" parameterType="java.util.Map"   >
+		   update t_banner(
+			<set> 	
+			      <if test=" banner_image_type!='' banner_image_type!=null">
+			        banner_image_type=#{banner_image_type},
+			      </if>
+			      <if test=" banner_image_id='' banner_image_id!=null">
+			        banner_image_id=#{banner_image_id},
+			      </if>
+    			  <if test=" banner_image_name!='' banner_image_name!=null">
+			        banner_image_name=#{banner_image_name},
+			      </if>
+		    </set>
+    	    where 
+	    	banner_name=#{banner_name}
+	</update> 
+	
+	<delete id="deleteBanner" parameterType="String">
+		delete from t_banner
+		where banner_name =#{banner_name}
+	</delete>
+	
+	<delete id="deleteBannerImage" parameterType="String">
+		delete from t_banner_image
+		where banner_name =#{banner_name}
+	</delete>
+
+</mapper>

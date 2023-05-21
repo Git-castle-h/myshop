@@ -3,7 +3,9 @@ CREATE TABLE t_member (
 	m_id        VARCHAR2(15)  NOT NULL, -- 회원아이디
 	m_email     VARCHAR2(50)  NOT NULL, -- 회원이메일
 	m_password  VARCHAR2(20)  NOT NULL, -- 회원비밀번호
-	m_address   VARCHAR2(500) NOT NULL, -- 회원주소
+	m_address1  VARCHAR2(20) NOT NULL,  -- 회원우편번호
+	m_address2  VARCHAR2(500) NOT NULL, -- 회원기본주소
+	m_address2  VARCHAR2(500) NOT NULL, -- 회원상세주소
 	m_tel1      VARCHAR2(20)  NOT NULL, -- 회원번호1
 	m_tel2      VARCHAR2(20)  NULL,     -- 회원번호2
 	m_gender    VARCHAR2(20)  NOT NULL, -- 회원성별
@@ -29,6 +31,13 @@ ALTER TABLE t_member
 		PRIMARY KEY (
 			m_id -- 회원아이디
 		);
+
+
+-- 회원 추가 m_id = 'sampleID' m_password ='1234'
+
+insert into t_member (m_id,m_email,m_password,m_address1,m_address2,m_address3,m_tel1,m_gender,m_b_day,m_job,m_agree1,m_agree2,m_agree3) 
+    values('sampleID','sample@sample.com','1234','sample_address1','sample_address2','sample_address3','000-0000-0000','남자','19991201','학생','agreed','agreed','agreed');
+
 
 -- 상품 테이블
 CREATE TABLE t_product (

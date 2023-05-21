@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<div class="page_context_wrap">
-			<div class="product_select_wrap">
+			<!-- <div class="product_select_wrap">
 				<div class="select_wrapper1 select search_select">
 					<button class="option toggle_btn"><span class="txt">상품 분류</span><i class="down fa-solid fa-chevron-down"></i></button>
 					<ul class="select_box hide">
@@ -28,11 +28,14 @@
 				<div class="btn_area">
 					<button class="btn btn1 search_btn"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
 				</div>
-			</div>
+			</div> -->
 			<div class="productList form">
 				<div class="form_title">
 					<span class="left">
 						상품 리스트
+					</span>
+					<span class="right">
+						<a href="${contextPath}/admin/product/newProduct">상품 등록하기 ></a>
 					</span>
 				</div>
 				<div class="form_context productList">

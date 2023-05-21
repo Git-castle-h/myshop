@@ -36,6 +36,7 @@
 						<div class="selection_box">
 							<div class="title">SELECT</div>
 							<div class="select_wrapper1 select">
+								<input type="hidden" class="select_input"/>
 								<button class="option toggle_btn"><span class="txt">OPTION</span><i class="down fa-solid fa-chevron-down"></i></button>
 								<ul class="select_box hide">
 									<li><button class="option select_btn disabled"><span class="txt">OPTION</span></button></li>
@@ -50,12 +51,13 @@
 				<div class="product_category form">
 					<div class="form_title">
 						<span class="left">
-							상품 이미지 수정
+							상품 카테고리 수정
 						</span>
 					</div>
 					<div class="form_context main_setting">
 						<div class="form_line">
-							<div class="select_wrapper2 select">
+							<div class="select_wrapper2 mp_cate select">
+								<input type="hidden" class="select_input"/>
 								<button class="option toggle_btn"><span class="txt">CATEGORY</span><i class="down fa-solid fa-chevron-down"></i></button>
 								<ul class="select_box hide">
 									<li><button class="option select_btn disabled"><span class="txt">CATEGORY</span></button></li>
@@ -76,8 +78,29 @@
 					</div>
 					<div class="form_context main_setting">
 						<div class="form_line">
-							<input type="text" class="pi_file_name" placeholder="상품 이미지" disabled="true">
-							<button class="pi_file_btn btn btn1 pi_file_btn">+ 파일추가</button>
+							<div class="inputFile_wrapper1 mp_img inputFile_wrapper pi_image"> 
+								<input type="file" class="file_input">
+								<input type="text" class="file_name" disabled="true">
+								<button class="file_btn btn btn1">+ 파일추가</button>
+							</div>
+							<script src="${contextPath}/resources/js/admin/help/inputFile_wrapper1.js"></script>
+						</div>
+					</div>
+				</div>
+				<div class="product_t_image form">
+					<div class="form_title">
+						<span class="left">
+							상품 썸네일 이미지 수정
+						</span>
+					</div>
+					<div class="form_context main_setting">
+						<div class="form_line">
+							<div class="inputFile_wrapper2 mp_t_img inputFile_wrapper pi_t_image"> 
+								<input type="file" class="file_input">
+								<input type="text" class="file_name" disabled="true">
+								<button class="file_btn btn btn1">+ 파일추가</button>
+							</div>
+							<script src="${contextPath}/resources/js/admin/help/inputFile_wrapper2.js"></script>
 						</div>
 					</div>
 				</div>
@@ -87,16 +110,16 @@
 							상품 이름/가격
 						</span>
 						<span class="right">
-							<input type="checkbox" name="recommend_check" id="recommend_check">
+							<input type="checkbox" name="recommend_check" class="mp_rec" id="recommend_check">
 							<label for="recommend_check" class="fontsmall">추천 아이템으로 설정</label>
 						</span>
 					</div>
 					<div class="form_context end">
 						<div class="form_line">
-							<input type="text" class="pn_name w100" placeholder="상품 이름">
+							<input type="text" class="mp_name pn_name w100" placeholder="상품 이름">
 						</div>
 						<div class="form_line">
-							<input type="tel" class="pn_price w100" placeholder="상품 가격">
+							<input type="tel" class="mp_price pn_price w100" placeholder="상품 가격">
 						</div>
 					</div>
 				</div>
@@ -138,8 +161,8 @@
 				<div class="form submit">
 					<div class="form_context end">
 						<div class="form_line btn_area">
-							<a href="#" class="btn btn1 join">수정하기</a>
-							<a href="#" class="btn btn2 cancel">취소</a>
+							<button type="button" class="btn btn1 mp_btn">수정하기</button>
+							<button type="button" class="btn btn2 cancel">취소</button>
 						</div>
 					</div>
 				</div>

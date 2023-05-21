@@ -24,7 +24,7 @@
 			<div class="box">
 				<div class="box_wrap">
 					<div class="box_top">
-						<form class="form" action="/login/login.do" method="post">
+						<form class="form" action="/mypage/mypageConfirm.do" method="post">
 							<input type="text" name="user_pw" class="user_pw" placeholder="비밀번호 확인">
 							<button type="submit" class="login_btn btn1 btn input"><span>MY 정보수정</span></button>
 						</form>
@@ -34,3 +34,4 @@
 		</div>
 	</div>
 </div>
+<script src="${contextPath}/resources/js/mypage/mypageConfirm.js"></script>

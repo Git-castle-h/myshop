@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.help">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="helpResult" type="HelpVO">
+		<result property="m_id" column="m_id" />
+		<result property="h_number" column="h_number" />
+		<result property="h_category" column="h_category" />
+		<result property="h_product_name" column="h_product_name" />
+		<result property="h_context" column="h_context" />
+		
+		<result property="h_answer_title" column="h_answer_title" />
+		<result property="h_answer_context" column="h_answer_context" />
+		<result property="h_date" column="h_date" />
+		<result property="admin_id" column="admin_id" />
+	</resultMap>	
+	
+	<resultMap id="helpImageResult" type="Help_imageVO">
+		<result property="m_id" column="m_id" />
+		<result property="h_number" column="h_number" />
+		<result property="h_image_date" column="h_image_date" />
+		<result property="h_image_type" column="h_image_type" />
+		<result property="h_image_id" column="h_image_id" />		
+		<result property="h_image_name" column="h_image_name" />
+	</resultMap>
+   
+     <select id="s_helpList" parameterType="String" resultMap="java.util.Map"   >
+        <![CDATA[
+      		select * from t_help
+	    ]]>
+	</select>
+	
+	<select id="s_helpById" resultMap="helpResult"   parameterType="String"  >
+	    <![CDATA[
+	    	select * from t_help where m_id = #{m_id}
+    	]]>
+	</select>
+	
+	<select id="s_helpImage" resultMap="helpImageResult"   parameterType="java.util.Map"  >
+	    <![CDATA[
+	    	select * from t_help_image where h_number = #{h_number} and m_id = #{m_id}
+    	]]>
+	</select>
+	
+	
+	<insert id="addHelp" parameterType="HelpVO"   >
+	    	    <![CDATA[
+
+		   insert into t_help(
+		                m_id, 
+		                h_number,
+	                    h_title,
+	                    h_category,
+	                    h_product_name,
+						h_context
+
+  			values(
+  			      #{m_id},
+  			      #{h_number},
+  			      #{h_title},
+  			      #{h_category},
+  			      #{h_product_name },
+  			      #{h_context}
+ 			 )
+		]]>
+	</insert> 
+	
+	<update id="updateHelp" parameterType="java.util.HashMap" >
+	   update t_product
+	    <set> 
+	      <if test=" h_title!='' and h_title!=null">
+	        h_title=#{h_title},
+	      </if>
+	      <if test=" h_category!='' h_category!=null">
+	        h_category=#{h_category},
+	      </if>
+	      <if test=" h_product_name!='' h_product_name!=null">
+	        h_product_name=#{h_product_name},
+	      </if>
+	      <if test=" h_context!='' and h_context!=null">
+	        h_context=#{h_context},
+	      </if>
+	     </set>
+	    where 
+	    h_number=#{h_number}
+	</update>
+	
+	<delete id="deleteHelp" parameterType="String">
+		delete from t_help
+ 		where h_number = #{h_number}
+	</delete>
+	
+	<insert id="addhelpImage" parameterType="Help_imageVO"   >
+	    	    <![CDATA[
+
+		   insert into t_help_image(
+		                m_id, 
+		                h_number,
+	                    h_image_type,
+	                    h_image_id,
+	                    h_image_name
+
+  			values(
+  			      #{m_id},
+  			      #{h_number},
+  			      #{h_image_type},
+  			      #{h_image_id},
+  			      #{h_image_name}
+ 			 )
+		]]>
+	</insert> 
+
+	
+	<update id="updatehelpImage" parameterType="java.util.Map"   >
+		   update t_help_image(
+			<set> 	
+			      <if test=" h_image_date!='' and h_image_date!=null">
+			        h_image_date=#{h_image_date},
+			      </if>
+			      <if test=" h_image_type!='' h_image_type!=null">
+			        h_image_type=#{h_image_type},
+			      </if>
+			      <if test=" h_image_id!='' h_image_id!=null">
+			        h_image_id=#{h_image_id},
+			      </if>
+			      <if test=" h_image_name!='' and h_image_name!=null">
+			        h_image_name=#{h_image_name},
+			      </if>
+		    </set>
+    	    where 
+	    	h_number=#{h_number}
+	</update> 
+
+	 
+	<delete id="deleteHelpImage" parameterType="String">
+		delete from t_help_image
+ 		where h_number = #{h_number}
+	</delete>
+	
+	
+
+	
+
+</mapper>

@@ -15,13 +15,13 @@ select_wrapper1.addEventListener("click",function(e){
         }
     });
     
-    toggle_btn.addEventListener("click",function(){
-        if(select_box.classList.contains("hide")){
-            select_box.classList.remove("hide");
-        }else{
-            select_box.classList.add("hide");
-        }
-    });
+
+    if(select_box.classList.contains("hide")){
+        select_box.classList.remove("hide");
+    }else{
+        select_box.classList.add("hide");
+    }
+
 
     select_btn.forEach(function(e){
         e.addEventListener("click",function(){
@@ -31,7 +31,6 @@ select_wrapper1.addEventListener("click",function(e){
             select_input.value = data_value;
             
             toggle_btn.querySelector(".txt").innerHTML = select_btn_txt;
-            select_box.classList.add("hide");
         });
     });
 

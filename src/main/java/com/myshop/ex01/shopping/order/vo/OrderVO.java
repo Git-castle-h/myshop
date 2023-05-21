@@ -7,13 +7,48 @@ public class OrderVO {
 	
 	private String m_id;
 	private String p_id;
+	private String o_id;
 	private String p_option;
 	private String p_name;
 	private String p_price;
-	private String o_address;
 	private String o_status;
+	private String o_number;
+	private String o_address1;
+	private String o_address2;
+	private String o_address3;
 	
 	
+	
+	public String getO_id() {
+		return o_id;
+	}
+	public void setO_id(String o_id) {
+		this.o_id = o_id;
+	}
+	public String getO_number() {
+		return o_number;
+	}
+	public void setO_number(String o_number) {
+		this.o_number = o_number;
+	}
+	public String getO_address1() {
+		return o_address1;
+	}
+	public void setO_address1(String o_address1) {
+		this.o_address1 = o_address1;
+	}
+	public String getO_address2() {
+		return o_address2;
+	}
+	public void setO_address2(String o_address2) {
+		this.o_address2 = o_address2;
+	}
+	public String getO_address3() {
+		return o_address3;
+	}
+	public void setO_address3(String o_address3) {
+		this.o_address3 = o_address3;
+	}
 	public String getM_id() {
 		return m_id;
 	}
@@ -43,12 +78,6 @@ public class OrderVO {
 	}
 	public void setP_price(String p_price) {
 		this.p_price = p_price;
-	}
-	public String getO_address() {
-		return o_address;
-	}
-	public void setO_address(String o_address) {
-		this.o_address = o_address;
 	}
 	public String getO_status() {
 		return o_status;

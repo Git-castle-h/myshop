@@ -6,6 +6,7 @@
 		<typeAlias type="com.myshop.ex01.shopping.cart.vo.CartVO" alias="CartVO"/>
 		<typeAlias type="com.myshop.ex01.shopping.member.vo.MemberVO" alias="MemberVO"/>
 		<typeAlias type="com.myshop.ex01.shopping.help.vo.HelpVO" alias="HelpVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.help.vo.Help_imageVO" alias="Help_imageVO"/>
 		<typeAlias type="com.myshop.ex01.shopping.main.vo.BannerVO" alias="BannerVO"/>
 		<typeAlias type="com.myshop.ex01.shopping.main.vo.Banner_imageVO" alias="Banner_imageVO"/>
 		<typeAlias type="com.myshop.ex01.shopping.member.vo.MemberVO" alias="MemberVO"/>

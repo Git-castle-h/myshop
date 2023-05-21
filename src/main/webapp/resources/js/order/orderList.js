@@ -150,6 +150,7 @@ order_line_arr.forEach(function(e){
             },
             success:function(data,textStatus){
                 alert(o_id+" 항목이 삭제되었습니다.");
+                location.href= contextPath+"/order/orderList";
             },
             error:function(data,textStatus){
                 console.log("에러가 발생했습니다.");

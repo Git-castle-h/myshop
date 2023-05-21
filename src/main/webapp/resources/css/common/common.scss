@@ -133,6 +133,21 @@ body{
 	}
   }
 
+  .inputFile_wrapper{
+	pointer-events: none;
+		.file_input{
+			position:absolute;
+			overflow: hidden;
+			left:-100%;
+			opacity: 0;
+			pointer-events: auto;
+		}
+		.file_btn{
+			padding:0.5em;
+			pointer-events: auto;
+		}
+  }
+
   #main{
 	font-size: 1.4em;
     min-height:100vh;

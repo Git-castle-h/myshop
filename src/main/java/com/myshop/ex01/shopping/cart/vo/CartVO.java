@@ -9,6 +9,7 @@ public class CartVO {
 	
 	private String m_id;
 	private String p_id;
+	private String c_id;
 	private String p_name;
 	private String p_option;
 	private String p_price;
@@ -57,6 +58,12 @@ public class CartVO {
 	}
 	public void setC_date(Date c_date) {
 		this.c_date = c_date;
+	}
+	public String getC_id() {
+		return c_id;
+	}
+	public void setC_id(String c_id) {
+		this.c_id = c_id;
 	}
 	
 	

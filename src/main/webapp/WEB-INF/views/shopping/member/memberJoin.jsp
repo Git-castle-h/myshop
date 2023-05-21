@@ -1,7 +1,10 @@
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <!-- 추가할부분 -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@taglib prefix ="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix ="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
+<input id="contextPath" type="hidden" value="${contextPath}">
+<script> let contextPath = document.querySelector("#contextPath").value; </script>
 <div class="memberjoin_wrap">
 	<div class="container">
 		<div class="page_top">
@@ -21,7 +24,7 @@
 				<div class="form_context identification">
 					<div class="form_line">
 						<input type="text" class="mj_id" placeholder="아이디">
-						<button class="btn1 btn mj_id_btn">아이디 중복확인</button>
+						<button type="button" class="btn1 btn mj_id_btn">아이디 중복확인</button>
 					</div>
 					<div class="form_line">
 						<input type="password" class="mj_pw" placeholder="비밀번호">
@@ -32,8 +35,8 @@
 				</div>
 				<div class="form_context address">
 					<div class="form_line">
-						<input type="text" class="memberjoin_postnum postnum" placeholder="우편번호">
-						<button class="btn1 btn mj_postnum_btn">우편번호</button>
+						<input type="text" class="mj_postnum postnum" placeholder="우편번호">
+						<button  type="button" class="btn1 btn mj_postnum_btn">우편번호</button>
 					</div>
 					<div class="form_line">
 						<input type="text" class="mj_address_basic address" placeholder="기본주소">
@@ -59,7 +62,7 @@
 					</div>
 				</div>
 				<div class="form_context newsletter">
-					<div class="form_line">
+					<!-- <div class="form_line">
 						<div class="fontsmall">
 							<input type="checkbox" id="mj_newsletter_chx">
 							<label for="mj_newsletter_chx">동의함</label>
@@ -67,7 +70,7 @@
 						<p class="fontsmall">
 							쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.
 						</p>
-					</div>
+					</div> -->
 					<div class="form_line">
 						<input type="email" class="mj_email" placeholder="이메일@shooping.net">
 					</div>
@@ -82,11 +85,11 @@
 				<div class="form_context">
 					<div class="form_line fontsmall">
 							<span>
-								<input type="radio" id="mj_gender_male" name="mj_gender" value="man" >
+								<input type="radio" class="mj_gender" id="mj_gender_male" name="mj_gender" value="man" >
 								<label for="mj_gender_male">남자</label>
 							</span>	
 							<span>
-								<input type="radio" id="mj_gender_female" name="mj_gender" value="woman" >
+								<input type="radio" class="mj_gender" id="mj_gender_female" name="mj_gender" value="woman" >
 								<label for="mj_gender_female">여자</label>
 							</span>
 					</div>
@@ -94,30 +97,32 @@
 				<div class="form_context">
 					<div class="form_line">
 						<span>생일</span>
-						<input type="date">
+						<input class="mj_b_day" type="date">
 					</div>
 				</div>
 				<div class="form_context">
 						<div class="form_line">
-						<div class="select_wrapper1 select w14e">
-							<button class="option toggle_btn"><span class="txt">직업선택</span><i class="down fa-solid fa-chevron-down"></i></button>
+						<div class="select_wrapper1 mj_job select w14e">
+							<input type="hidden" class="select_input"/>
+							<button type="button" class="option toggle_btn"><span class="txt">직업선택</span><i class="down fa-solid fa-chevron-down"></i></button>
 							<ul class="select_box hide">
-								<li><button class="option select_btn disabled"><span class="txt">직업선택</span></button></li>
-								<li><button class="option select_btn"><span class="txt">학생</span></button></li>
-								<li><button class="option select_btn"><span class="txt">직장인</span></button></li>
+								<li><button  type="button" class="option select_btn disabled"><span class="txt">직업선택</span></button></li>
+								<li><button  type="button" class="option select_btn"><span class="txt" data-value="학생">학생</span></button></li>
+								<li><button  type="button" class="option select_btn"><span class="txt" data-value="직장인">직장인</span></button></li>
 							</ul>
 						</div>
 						</div>
 						<script src="${contextPath}/resources/js/member/select_wrapper1.js"></script>
 				</div>
-				<div class="form_context">
+				<!-- <div class="form_context">
 					<div class="form_line">
-						<div class="select_wrapper2 select w14e">
-							<button class="option toggle_btn"><span class="txt">가입경로</span><i class="down fa-solid fa-chevron-down"></i></button>
+						<div class="select_wrapper2 mj_way select w14e">
+							<input type="hidden" class="select_input"/>
+							<button  type="button" class="option toggle_btn"><span class="txt">가입경로</span><i class="down fa-solid fa-chevron-down"></i></button>
 							<ul class="select_box hide">
-								<li><button class="option select_btn disabled"><span class="txt">가입경로</span></button></li>
-								<li><button class="option select_btn"><span class="txt">학생</span></button></li>
-								<li><button class="option select_btn"><span class="txt">기타</span></button></li>
+								<li><button  type="button" class="option select_btn disabled"><span class="txt">가입경로</span></button></li>
+								<li><button  type="button" class="option select_btn"><span class="txt">학생</span></button></li>
+								<li><button  type="button" class="option select_btn"><span class="txt">기타</span></button></li>
 							</ul>
 						</div>
 					</div>
@@ -125,9 +130,9 @@
 						<input class="select_wrapper2_etc" type="text" placeholder="가입경로 기타 선택 시" disabled="true">
 					</div>
 					<script src="${contextPath}/resources/js/member/select_wrapper2.js"></script>
-				</div>
+				</div> -->
 				<div class="form_context">
-					<input type="text" class="recommender" placeholder="추천인 아이디">
+					<input type="text" class="mj_recommend" placeholder="추천인 아이디">
 				</div>
 			</div>
 			<div class="form agree">
@@ -186,11 +191,11 @@
 			</div>
 			<div class="form submit">
 				<div class="form_line btn_area">
-					<a href="#" class="btn btn1 join">회원가입</a>
-					<a href="#" class="btn btn2 cancel">회원가입 취소</a>
+					<button  type="button" class="btn btn1 join_btn">회원가입</button>
+					<button  type="button"onclick="javascript:history.back()" class="btn btn2 cancel_btn">회원가입 취소</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+	<script src="${contextPath}/resources/js/member/memberJoin.js"></script>
 </div>

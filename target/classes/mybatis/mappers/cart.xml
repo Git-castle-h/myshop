@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.cart">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="cartResult" type="CartVO">
+		<result property="m_id" column="m_id" />
+		<result property="p_id" column="p_id" />
+		<result property="c_id" column="c_id" />
+		<result property="p_name" column="p_name" />
+		<result property="p_option" column="p_option" />
+		<result property="p_price" column="p_price" />
+		<result property="c_number" column="c_number" />
+
+	</resultMap>	
+	
+   
+     <select id="cartList" parameterType="String" resultMap="java.util.Map"   >
+        <![CDATA[
+      		select * from t_cart where m_id = #{m_id}
+	    ]]>
+	</select>
+	
+	
+	<insert id="addCart" parameterType="CartVO"   >
+	    	    <![CDATA[
+
+		   insert into t_cart(
+		                m_id, 
+		                p_id,
+            		    c_id,
+	                    p_name,
+	                    p_option,
+	                    p_price,
+						c_number
+
+  			values(
+		  			      #{m_id},
+		  			      #{p_id},
+		  			      #{c_id},
+		  			      #{p_name},
+		  			      #{p_option},
+		  			      #{p_price},
+		  			      #{c_number}
+ 			 )
+		]]>
+	</insert> 
+	
+	<delete id="delCart" parameterType="String">
+		<![CDATA[
+			delete from t_cart
+			where c_id = #{c_id}
+		]]>
+	</delete>
+	
+	<update id="updateCart" parameterType="java.util.Map"   >
+		   update t_cart(
+			<set> 	
+			      <if test=" p_option!='' and p_option!=null">
+			        p_option=#{p_option},
+			      </if>
+			      <if test=" c_number!='' c_number!=null">
+			        c_number=#{c_number},
+			      </if>
+			      <if test=" p_price!='' p_price!=null">
+			        p_price=#{p_price},
+			      </if>
+		    </set>
+    	    where 
+	    	c_id=#{c_id}
+	</update> 
+
+
+
+</mapper>

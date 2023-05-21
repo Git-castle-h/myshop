@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="memberResult" type="MemberVO">
+		<result property="m_id" column="m_id" />
+		<result property="m_email" column="m_email" />
+		<result property="m_password" column="m_password" />
+		
+		<result property="m_address1" column="m_address1" />
+		<result property="m_address2" column="m_address2" />
+		<result property="m_address3" column="m_address3" />
+		
+		<result property="member_birth_y" column="member_birth_y" />
+		<result property="member_birth_m" column="member_birth_m" />
+		<result property="member_birth_d" column="member_birth_d" />
+		
+		<result property="m_tel1" column="m_tel1" />
+		<result property="m_tel2" column="m_tel2" />
+		
+		<result property="m_gender" column="m_gender" />
+		<result property="m_b_day" column="m_b_day" />
+		
+		<result property="m_job" column="m_job" />
+		<result property="m_recommend" column="m_recommend" />
+		<result property="m_agree1" column="m_agree1" />
+		<result property="m_agree2" column="m_agree2" />
+		<result property="m_agree3" column="m_agree3" />
+		<result property="m_join_date" column="m_join_date" />
+
+	
+	</resultMap>	
+
+	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
+	    <![CDATA[
+			select * from t_member 
+			 where m_id=#{m_id}
+			 and m_pw=#{m_pw}			
+			 
+		]]>
+	</select>
+	
+	<select id="memberList" parameterType="String" resultType="java.util.Map">
+	    <![CDATA[
+			select * from t_member 		
+		]]>
+	</select>
+	
+	<select id="isOverlapped" parameterType="String" resultType="String">
+		   select decode(count(*),1, 'true', 0, 'false')
+		   from t_member 
+		   where m_id = #{m_id}
+	</select>
+	<select id="searchMember" resultMap="memberResult"   parameterType="java.util.HashMap"  >
+	       select  *  from t_member 
+	       where 
+	         <if test="search_type=='m_id'">
+	            m_id=#{search_word}
+	         </if>
+	         <if test="search_type=='m_email'">
+	           m_email=#{search_word}
+	         </if>
+	         <if test="search_type=='m_tel'">
+	           m_tel1||m_tel=#{search_word} 
+	         </if>
+	       order by m_join_date desc
+	</select>
+	
+	
+  <insert id="addMember"  parameterType="MemberVO">
+    		insert into t_member(	m_id,
+				 					 m_email,
+                                     m_password,
+                                     m_address1,
+                                     m_address2,
+                                     m_address3,
+                                     m_tel1,
+                                    <if test=" m_tel2!='' and m_tel2!=null">
+                                     m_tel2,
+                                    </if>
+                                     m_gender,
+                                     m_b_day,
+                                     m_job,
+                                    <if test=" m_recommend!='' and m_recommend!=null"> 
+                                     m_recommend,
+                                    </if>
+                                    <if test=" m_agree3!='' and m_agree3!=null">
+                                    m_agree3,
+                                    </if>
+                                     m_agree1,
+                                     m_agree2
+                                     
+                                     
+                                     )
+							 values(#{m_id},
+									#{m_email},
+									#{m_password},
+                                 	#{m_address1},
+                                   	#{m_address2},
+                                   	#{m_address3},
+                                   	#{m_tel1},
+                                   	<if test=" m_tel2!='' and m_tel2!=null">
+                                   	#{m_tel2},
+                                   	</if>
+                                    #{m_b_day},
+                                    #{m_job},
+                                    <if test=" m_recommend!='' and m_recommend!=null">
+                                    #{m_recommend},
+                                    </if>
+                                    <if test=" m_agree3!='' and m_agree3!=null">
+                                    #{m_agree3},
+                                    </if>
+                                    #{m_agree1},
+                                    #{m_agree2})
+
+                  
+  </insert>
+  <update id="modMember" parameterType="MemberVO">
+	   update t_member
+			   <set>
+			      <if test=" m_id!='' and m_id!=null">
+			        m_id=#{m_id},
+			      </if>
+			      <if test=" m_email!='' and m_email!=null">
+			         m_email=#{m_email},
+			      </if>
+			       <if test=" m_password!='' and m_password!=null">
+			         m_password=#{m_password},
+			      </if>
+			      <if test=" m_address1!='' and m_address1!=null">
+			         m_address1=#{m_address1},
+			      </if>
+			      <if test=" m_address2!='' and m_address2!=null">
+			         m_address2=#{m_address2},
+			      </if>
+			      <if test=" m_address3!='' and m_address3!=null">
+			         m_address3=#{m_address3},
+			      </if>
+			      <if test=" m_tel1!='' and m_tel1!=null">
+			         m_tel1=#{m_tel1},
+			      </if>
+			      <if test=" m_tel2!='' and m_tel2!=null">
+			         m_tel2=#{m_tel2},
+			      </if>
+			      <if test=" m_gender!='' and m_gender!=null">
+			         m_gender=#{m_gender},
+			      </if>
+			      <if test=" m_b_day!='' and m_b_day!=null">
+			         m_b_day=#{m_b_day},
+			      </if>
+			      <if test=" m_job!='' and m_job!=null">
+			         m_job=#{m_job},
+			      </if>
+			      <if test=" m_recommend!='' and m_recommend!=null">
+			         m_recommend=#{m_recommend},
+			      </if>
+			      <if test=" m_agree1!='' and m_agree1!=null">
+			         m_agree1=#{m_agree1},
+			      </if>
+    		      <if test=" m_agree2!='' and m_agree2!=null">
+			         m_agree2=#{m_agree2},
+			      </if>
+     		      <if test=" m_agree3!='' and m_agree3!=null">
+			         m_agree3=#{m_agree3},
+			      </if>
+			   </set>
+		where 
+		m_id=#{m_id}
+	</update>
+	<delete id="deleteMember" parameterType="String">
+	  delete from t_member
+	  where m_id=#{m_id}
+	</delete>
+	
+</mapper>

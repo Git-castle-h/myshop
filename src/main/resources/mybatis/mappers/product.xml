@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.product">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="productResult" type="ProductVO">
+		<result property="p_id" column="p_id" />
+		<result property="p_name" column="p_name" />
+		<result property="p_price" column="p_price" />
+		<result property="p_detail_title" column="p_detail_title" />
+		<result property="p_detail_context" column="p_detail_context" />
+		
+		<result property="p_recommend" column="p_recommend" />
+		<result property="admin_id" column="admin_id" />
+		<result property="p_date" column="p_date" />
+		<result property="p_category" column="p_category" />
+	</resultMap>	
+
+	<resultMap id="product_imageResult" type="Product_imageVO">
+	   <result property="p_id" column="p_id" />
+	   <result property="p_name" column="p_name" />
+	   <result property="p_price" column="p_price" />
+	   <result property="p_image_date" column="p_image_date" />
+	   <result property="p_image_type" column="p_image_type" />
+	   <result property="p_image_id" column="p_image_id" />
+	   <result property="p_image_name" column="p_image_name" />
+	</resultMap>
+	
+
+	
+   
+      <select id="s_productList" parameterType="String" resultMap="java.util.Map"   >
+        <![CDATA[
+      		select * from t_product
+	    ]]>
+	</select>
+	
+	<select id="s_productById" resultMap="productResult"   parameterType="String"  >
+	    <![CDATA[
+	    	select * from t_product where p_id = #{p_id}
+    	]]>
+	</select>
+	
+	<select id="s_recommend_productById" resultMap="productResult"   parameterType="String"  >
+	    <![CDATA[
+	    	select * from t_product where p_recommend = 'recommend'
+    	]]>
+	</select>
+	
+	
+	<select id="s_productImageById" resultMap="product_imageResult"   parameterType="String"  >
+	    <![CDATA[
+	    	select * from t_product_image where p_id = #{p_id}
+    	]]>
+	</select>
+	
+	<select id="s_product_t_ImageById" resultMap="product_t_imageResult"   parameterType="String"  >
+	    <![CDATA[
+	    	select * from t_product_t_image where p_id = #{p_id}
+    	]]>
+	</select>
+	
+	<insert id="addProduct" parameterType="ProductVO"   >
+	    
+	    <![CDATA[
+		   insert into t_product(
+		                p_id, 
+		                p_name,
+	                    p_price,
+	                    p_detail_title,
+	                    p_detail_context,
+						p_recommend,
+						admin_id,
+						p_category,
+
+  			values(
+  			      #{p_id},
+  			      #{p_name},
+  			      #{p_price},
+  			      #{p_detail_title},
+  			      #{p_detail_context },
+  			      #{p_recommend},
+  			      #{admin_id},
+  			      #{p_category},
+ 			 )
+		]]>
+	</insert> 
+	
+	<insert id="insertProductImageFile" parameterType="Product_imageVO"   >
+	    <![CDATA[
+		   insert into t_product_image (p_id,
+                                     p_name,
+									 p_price,
+									 p_image_type,
+									 p_image_id,
+									 p_image_name
+									 )
+   							values(  #{p_id},
+	   					 			 #{p_name},
+	   							 	 #{p_price},
+	   								 #{p_image_type},
+	   								 #{p_image_id},
+	   								 #{p_image_name} 
+	   								 
+	   								 )
+	]]>
+	</insert>
+	
+	<update id="updateProduct" parameterType="java.util.HashMap" >
+	   update t_product
+	    <set> 
+	      <if test=" p_name!='' and p_name!=null">
+	        p_name=#{p_name},
+	      </if>
+	      <if test=" p_price!='' and p_price!=null">
+	        p_price=#{p_price},
+	      </if>
+	      <if test=" p_detail_title!='' and p_detail_title!=null">
+	        p_detail_title=#{p_detail_title},
+	      </if>
+	      <if test=" p_detail_context!='' p_detail_context!=null">
+	        p_detail_context=#{p_detail_context},
+	      </if>
+	      <if test=" p_recommend!='' and p_recommend!=null">
+	        p_recommend=#{p_recommend},
+	      </if>
+	      <if test=" admin_id!='' and admin_id!=null">
+	        admin_id=#{admin_id},
+	      </if>
+	      <if test=" p_category!='' and p_category!=null">
+	        p_category=#{p_category},
+	      </if>
+	      <if test=" goods_page_total!='' and goods_page_total!=null">
+	        goods_page_total=#{goods_page_total},
+	      </if>
+	     </set>
+	    where 
+	    p_id=#{p_id}
+	</update>	
+	<delete id="deleteProduct" parameterType="String">
+	  delete from t_product
+	  where p_id=#{p_id}
+	</delete>
+	 
+	<update id="updateProductImage" parameterType="Product_imageVO">
+		update t_product_image
+		set p_image_name=#{p_image_name}
+		where	 
+		p_id=#{p_id} and p_image_id=#{p_image_id}
+	</update>
+	<delete id="deleteProductImage" parameterType="String">
+	  delete from t_product_image
+	  where p_image_id=#{p_image_id}
+	</delete>
+	
+
+</mapper>

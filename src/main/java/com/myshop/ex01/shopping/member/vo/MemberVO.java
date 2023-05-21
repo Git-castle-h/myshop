@@ -10,9 +10,14 @@ public class MemberVO {
 	private String m_id;
 	private String m_email;
 	private String m_password;
-	private String m_address;
+	
+	private String m_address1;
+	private String m_address2;
+	private String m_address3;
+	
 	private String m_tel1;
 	private String m_tel2;
+	
 	private String m_gender;
 	private Date m_b_day;
 	private String m_job;
@@ -41,11 +46,23 @@ public class MemberVO {
 	public void setM_password(String m_password) {
 		this.m_password = m_password;
 	}
-	public String getM_address() {
-		return m_address;
+	public String getM_address1() {
+		return m_address1;
 	}
-	public void setM_address(String m_address) {
-		this.m_address = m_address;
+	public void setM_address1(String m_address1) {
+		this.m_address1 = m_address1;
+	}
+	public String getM_address2() {
+		return m_address2;
+	}
+	public void setM_address2(String m_address2) {
+		this.m_address2 = m_address2;
+	}
+	public String getM_address3() {
+		return m_address3;
+	}
+	public void setM_address3(String m_address3) {
+		this.m_address3 = m_address3;
 	}
 	public String getM_tel1() {
 		return m_tel1;
@@ -110,3 +127,4 @@ public class MemberVO {
 	
 	
 }
+
