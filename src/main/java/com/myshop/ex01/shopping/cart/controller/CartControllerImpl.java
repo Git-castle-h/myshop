@@ -1,25 +1,73 @@
 package com.myshop.ex01.shopping.cart.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.myshop.ex01.shopping.cart.dao.CartDAO;
+import com.myshop.ex01.shopping.cart.service.CartService;
+import com.myshop.ex01.shopping.cart.vo.CartVO;
+import com.myshop.ex01.shopping.member.vo.MemberVO;
+import com.myshop.ex01.shopping.product.dao.ProductDAO;
+import com.myshop.ex01.shopping.product.vo.ProductVO;
+import com.myshop.ex01.shopping.product.vo.Product_imageVO;
+import com.myshop.ex01.shopping.product.vo.Product_t_imageVO;
 
 @Controller("CartController")
 @RequestMapping(value="/cart", method = {RequestMethod.GET,RequestMethod.POST})
 public class CartControllerImpl implements CartController {
 
+	@Autowired
+	CartService cartservice;
+	
+	@Autowired
+	MemberVO MemberVO;
+	
+	@Autowired
+	CartVO CartVO;
+	
+	@Autowired
+	ProductVO ProductVO;
+	
+	@Autowired
+	Product_imageVO Product_imageVO;
+	
+	@Autowired
+	Product_t_imageVO Product_t_imageVO;
+	
+	@Autowired
+	CartDAO cartDAO;
+	
+	@Autowired
+	ProductDAO productDAO;
+	
     @RequestMapping(value="/cartList", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView cartList(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String viewName = (String)request.getAttribute("viewName");
+        
+        HttpSession session =request.getSession();
+        
+        MemberVO member = (MemberVO)session.getAttribute("member");
+        
+        session.setAttribute("member", member);
+ 
+//        String m_id = member.getM_id();
+        String m_id = "sampleID";
+        
+        List<List>cartList = cartservice.listCart(m_id);
+        
         ModelAndView mav = new ModelAndView();
+    
+        mav.addObject("cartList",cartList);
+        
         mav.setViewName(viewName);
         return mav;
     }

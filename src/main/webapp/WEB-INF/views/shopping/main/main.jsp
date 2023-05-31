@@ -5,59 +5,90 @@
 <div class="main_wrap wrap">
     <div class="container">
         <div class="main_banner">
-            <div class="main event">
+            <c:choose>
+            <c:when test="not empty ${banner[0][0].banner_link}">
+            <a class="main event" href="${contextPath}/${banner[0][0].banner_link}" style="background-color:${banner[0][0].banner_color}">
+            </c:when>
+            <c:otherwise>
+                <a class="main event"style="background-color:${banner[0][0].banner_color}">                
+            </c:otherwise>
+            </c:choose>
                 <div class="title">
-                    Main Event
+                    ${banner[0][0].banner_title}
                 </div>
                 <div class="detail">
-                    Event Detail
+                    ${banner[0][0].banner_detail}
                 </div>
-            </div>
-            <div class="sub event sub1">
+            </a>
+            <c:choose>
+            <c:when test="not empty ${banner[0][1].banner_link}">
+            <a class="sub event" href="${contextPath}/${banner[0][1].banner_link}" style="background-color:${banner[0][1].banner_color}">
+            </c:when>
+            <c:otherwise>
+                <a class="sub event"style="background-color:${banner[0][1].banner_color}">                
+            </c:otherwise>
+            </c:choose>
                 <div class="title">
-                    Second Event
+                    ${banner[0][1].banner_title}
                 </div>
                 <div class="detail">
-                    Event Detail
+                    ${banner[0][1].banner_detail}
                 </div>
-            </div>
-            <div class="sub event sub2">
+            </a>
+            <c:choose>
+                <c:when test="not empty ${banner[0][2].banner_link}">
+                <a class="sub event" href="${contextPath}/${banner[0][2].banner_link}" style="background-color:${banner[0][2].banner_color}">
+                </c:when>
+                <c:otherwise>
+                    <a class="sub event"style="background-color:${banner[0][2].banner_color}">                
+                </c:otherwise>
+                </c:choose>
                 <div class="title">
-                    Third Event
+                    ${banner[0][2].banner_title}
                 </div>
                 <div class="detail">
-                    Event Detail
+                    ${banner[0][2].banner_detail}
                 </div>
-            </div>
+            </a>
         </div>
         <div class="bestItem slide_wrap bestSwiper">
             <div class="title">Best Items</div>
             <div class="slide swiper-wrapper">
-                 <div class="product_wrap swiper-slide">
-                    <div class="img_box">
-                    </div>
-                    <div class="tag_box">
-                        <div class="name">Item Name</div>
-                        <div class="price">
-                            <span class="won">\</span><span class="num">10000</span>
+                <c:forEach var="recp" items="${recProduct[0]}">
+                    <a class="product_wrap swiper-slide" href="${contextPath}/product/productDetail/${recp.p_id}">
+                        <div class="img_box">
+                            <c:if test="not empty ${recProduct[2][count].p_t_image_name}">
+                                <img src="${contextPath}/images/${recProduct[2][count].p_t_image_name}" alt="">
+                            </c:if>
                         </div>
-                    </div>
-                 </div>
+                        <div class="tag_box">
+                            <div class="name">${recp.p_name}</div>
+                            <div class="price">
+                                <span class="won">\</span><span class="num">${recp.p_price}</span>
+                            </div>
+                        </div>
+                    </a>
+                </c:forEach>
             </div>
         </div>
         <div class="newItem slide_wrap newSwiper">
             <div class="title">New Items</div>
             <div class="slide swiper-wrapper">
-                <div class="product_wrap swiper-slide">
-                    <div class="img_box">
-                    </div>
-                    <div class="tag_box">
-                        <div class="name">Item Name</div>
-                        <div class="price">
-                            <span class="won">\</span><span class="num">10000</span>
+                <c:forEach var="pro" items="${product[0]}">
+                    <a class="product_wrap swiper-slide" href="${contextPath}/product/productDetail/${pro.p_id}">
+                        <div class="img_box">
+                            <c:if test="not empty ${product[2][count].p_t_image_name}">
+                                <img src="${contextPath}/images/${product[2][count].p_t_image_name}" alt="">
+                            </c:if>
                         </div>
-                    </div>
-                 </div>
+                        <div class="tag_box">
+                            <div class="name">${pro.p_name}</div>
+                            <div class="price">
+                                <span class="won">\</span><span class="num">${pro.p_price}</span>
+                            </div>
+                        </div>
+                    </a>
+                </c:forEach>
             </div>
         </div>
     </div>

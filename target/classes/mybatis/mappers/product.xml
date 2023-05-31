@@ -28,35 +28,57 @@
 	   <result property="p_image_name" column="p_image_name" />
 	</resultMap>
 	
+	<resultMap id="product_t_imageResult" type="Product_t_imageVO">
+	   <result property="p_id" column="p_id" />
+	   <result property="p_name" column="p_name" />
+	   <result property="p_price" column="p_price" />
+	   <result property="p_image_date" column="p_image_date" />
+	   <result property="p_image_type" column="p_image_type" />
+	   <result property="p_image_id" column="p_image_id" />
+	   <result property="p_image_name" column="p_image_name" />
+	</resultMap>
+	
+	<resultMap id="optionResult" type="OptionVO">
+	   <result property="p_id" column="p_id" />
+	   <result property="p_name" column="p_name" />
+	   <result property="p_price" column="p_price" />
+	   <result property="p_option" column="p_option" />
+	</resultMap>
 
 	
    
-      <select id="s_productList" parameterType="String" resultMap="java.util.Map"   >
+   <select id="s_productList" resultMap="productResult" resultType="list" >
         <![CDATA[
       		select * from t_product
 	    ]]>
 	</select>
 	
-	<select id="s_productById" resultMap="productResult"   parameterType="String"  >
+	<select id="s_productById" resultMap="productResult"  parameterType="ProductVO" resultType="list"  >
 	    <![CDATA[
 	    	select * from t_product where p_id = #{p_id}
     	]]>
 	</select>
 	
-	<select id="s_recommend_productById" resultMap="productResult"   parameterType="String"  >
+	<select id="s_productByCate" resultMap="productResult"  parameterType="ProductVO" resultType="list"  >
+	    <![CDATA[
+	    	select * from t_product where p_category = #{p_category}
+    	]]>
+	</select>
+	
+	<select id="s_recommend_product" resultMap="productResult" resultType="list" >
 	    <![CDATA[
 	    	select * from t_product where p_recommend = 'recommend'
     	]]>
 	</select>
 	
 	
-	<select id="s_productImageById" resultMap="product_imageResult"   parameterType="String"  >
+	<select id="s_productImageById" resultMap="product_imageResult"   parameterType="ProductVO"  >
 	    <![CDATA[
 	    	select * from t_product_image where p_id = #{p_id}
     	]]>
 	</select>
 	
-	<select id="s_product_t_ImageById" resultMap="product_t_imageResult"   parameterType="String"  >
+	<select id="s_product_t_ImageById" resultMap="product_t_imageResult"   parameterType="ProductVO"  >
 	    <![CDATA[
 	    	select * from t_product_t_image where p_id = #{p_id}
     	]]>
@@ -73,42 +95,24 @@
 	                    p_detail_context,
 						p_recommend,
 						admin_id,
-						p_category,
+						p_category
 
   			values(
   			      #{p_id},
   			      #{p_name},
   			      #{p_price},
   			      #{p_detail_title},
-  			      #{p_detail_context },
+  			      #{p_detail_context},
   			      #{p_recommend},
   			      #{admin_id},
-  			      #{p_category},
+  			      #{p_category}
  			 )
 		]]>
 	</insert> 
 	
-	<insert id="insertProductImageFile" parameterType="Product_imageVO"   >
-	    <![CDATA[
-		   insert into t_product_image (p_id,
-                                     p_name,
-									 p_price,
-									 p_image_type,
-									 p_image_id,
-									 p_image_name
-									 )
-   							values(  #{p_id},
-	   					 			 #{p_name},
-	   							 	 #{p_price},
-	   								 #{p_image_type},
-	   								 #{p_image_id},
-	   								 #{p_image_name} 
-	   								 
-	   								 )
-	]]>
-	</insert>
+
 	
-	<update id="updateProduct" parameterType="java.util.HashMap" >
+	<update id="updateProduct" parameterType="ProductVO" >
 	   update t_product
 	    <set> 
 	      <if test=" p_name!='' and p_name!=null">
@@ -139,21 +143,104 @@
 	    where 
 	    p_id=#{p_id}
 	</update>	
-	<delete id="deleteProduct" parameterType="String">
+	<delete id="deleteProduct" parameterType="ProductVO">
 	  delete from t_product
 	  where p_id=#{p_id}
 	</delete>
 	 
+	 
+ 	<insert id="addProductImage" parameterType="Product_imageVO"   >
+    <![CDATA[
+	   insert into t_product_image (p_id,
+                                    p_name,
+								 p_price,
+								 p_image_type,
+								 p_image_id,
+								 p_image_name
+								 )
+  							values(  #{p_id},
+   					 			 #{p_name},
+   							 	 #{p_price},
+   								 #{p_image_type},
+   								 #{p_image_id},
+   								 #{p_image_name} 
+   								 
+   								 )
+	]]>
+	</insert>
 	<update id="updateProductImage" parameterType="Product_imageVO">
 		update t_product_image
 		set p_image_name=#{p_image_name}
 		where	 
 		p_id=#{p_id} and p_image_id=#{p_image_id}
 	</update>
-	<delete id="deleteProductImage" parameterType="String">
+	<delete id="delProductImage" parameterType="Product_imageVO">
 	  delete from t_product_image
 	  where p_image_id=#{p_image_id}
 	</delete>
 	
-
+	
+	<insert id="addProduct_t_Image" parameterType="Product_t_imageVO"   >
+    <![CDATA[
+	   insert into t_product_image (p_id,
+                                    p_name,
+								 p_price,
+								 p_t_image_type,
+								 p_t_image_id,
+								 p_t_image_name
+								 )
+  							values(  #{p_id},
+   					 			 #{p_name},
+   							 	 #{p_price},
+   								 #{p_t_image_type},
+   								 #{p_t_image_id},
+   								 #{p_t_image_name} 
+   								 
+   								 )
+	]]>
+	</insert>
+	<update id="updateProduct_t_Image" parameterType="Product_t_imageVO">
+		update t_product_t_image
+		set p_t_image_name=#{p_t_image_name}
+		where	 
+		p_id=#{p_id} and p_t_image_id=#{p_t_image_id}
+	</update>
+	<delete id="delProduct_t_Image" parameterType="Product_t_imageVO">
+	  delete from t_product_t_image
+	  where p_t_image_id=#{p_t_image_id}
+	</delete>
+	
+   <select id="s_optionById" parameterType="ProductVO" resultMap="optionResult" resultType="list" >
+        <![CDATA[
+      		select * from t_option where p_id = #{p_id} ORDER BY p_option DESC
+	    ]]>
+	</select>
+	
+   <insert id="addOption" parameterType="OptionVO" >
+        <![CDATA[
+	   insert into t_option (p_id,
+                             p_name,
+							 p_price,
+							 p_option
+								 )
+  							values(
+  							#{p_id},
+                            #{p_name},
+							#{p_price},
+							#{p_option}	 )
+	    ]]>
+	</insert>
+	<update id="updateOption" parameterType="OptionVO">
+		update t_option
+		set p_option=#{p_option}
+		where	 
+		p_id=#{p_id}
+	</update>
+	
+	<delete id="delOption" parameterType="ProductVO">
+	  delete from t_option
+	  where p_id=#{p_id}
+	</delete>
+	
+	
 </mapper>

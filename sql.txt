@@ -126,6 +126,36 @@ ALTER TABLE t_product_image
 			p_price  -- 상품가격
 		);
 
+-- 상품 썸네일 이미지 테이블
+CREATE TABLE t_product_t_image (
+	p_id         VARCHAR2(20)  NOT NULL, -- 상품번호
+	p_name       VARCHAR2(100) NOT NULL, -- 상품이름
+	p_price      VARCHAR2(20)  NOT NULL, -- 상품가격
+	p_t_image_date DATE          DEFAULT current_date NOT NULL , -- 이미지등록일자
+	p_t_image_type VARCHAR2(20)  NOT NULL, -- 이미지타입
+	p_t_image_id   VARCHAR2(20)  NOT NULL, -- 이미지번호
+	p_t_image_name VARCHAR2(50)  NOT NULL  -- 이미지이름
+);
+
+-- 상품 이미지 테이블 기본키
+CREATE UNIQUE INDEX PK_t_product_t_image
+	ON t_product_image ( -- 상품 이미지 테이블
+		p_id    ASC, -- 상품번호
+		p_name  ASC, -- 상품이름
+		p_price ASC  -- 상품가격
+	);
+
+-- 상품 이미지 테이블
+ALTER TABLE t_product_t_image
+	ADD
+		CONSTRAINT PK_t_product_image -- 상품 이미지 테이블 기본키
+		PRIMARY KEY (
+			p_id,    -- 상품번호
+			p_name,  -- 상품이름
+			p_price  -- 상품가격
+		);
+
+
 -- 장바구니
 CREATE TABLE t_cart (
 	m_id     VARCHAR2(15)  NOT NULL, -- 회원아이디
@@ -180,7 +210,6 @@ CREATE UNIQUE INDEX PK_t_order
 	ON t_order ( -- 주문정보
 		m_id     ASC, -- 회원아이디
 		p_id     ASC, -- 상품번호
-		p_option ASC, -- 상품옵션
 		p_name   ASC, -- 상품이름
 		p_price  ASC, -- 상품가격
 		o_id	 ASC  -- 주문아이디	
@@ -193,7 +222,6 @@ ALTER TABLE t_order
 		PRIMARY KEY (
 			m_id,     -- 회원아이디
 			p_id,     -- 상품번호
-			p_option, -- 상품옵션
 			p_name,   -- 상품이름
 			p_price   -- 상품가격
 			o_id	  -- 주문아이디
@@ -232,6 +260,7 @@ CREATE TABLE t_help (
 	h_context        VARCHAR2(2048) NOT NULL, -- 문의내용
 	h_answer_title   VARCHAR2(20)   NULL,     -- 문의답변제목
 	h_answer_context VARCHAR2(2048) NULL,     -- 문의답변내용
+	h_status 	 VARCHAR2(20 	NULL,     -- 문의상태
 	h_date           DATE           DEFAULT current_date NOT NULL -- 문의등록일자
 );
 
@@ -363,23 +392,6 @@ ALTER TABLE t_cart
 			m_id -- 회원아이디
 		);
 
--- 장바구니
-ALTER TABLE t_cart
-	ADD
-		CONSTRAINT FK_t_option_TO_t_cart -- 상품 옵션 테이블 -> 장바구니
-		FOREIGN KEY (
-			p_id,     -- 상품번호
-			p_name,   -- 상품이름
-			p_option, -- 상품옵션
-			p_price   -- 상품가격
-		)
-		REFERENCES t_option ( -- 상품 옵션 테이블
-			p_id,     -- 상품번호
-			p_name,   -- 상품이름
-			p_option, -- 상품옵션
-			p_price   -- 상품가격
-		);
-
 -- 주문정보
 ALTER TABLE t_order
 	ADD
@@ -388,14 +400,12 @@ ALTER TABLE t_order
 			m_id,     -- 회원아이디
 			p_id,     -- 상품번호
 			p_name,   -- 상품이름
-			p_option, -- 상품옵션
 			p_price   -- 상품가격
 		)
 		REFERENCES t_cart ( -- 장바구니
 			m_id,     -- 회원아이디
 			p_id,     -- 상품번호
 			p_name,   -- 상품이름
-			p_option, -- 상품옵션
 			p_price   -- 상품가격
 		);
 
@@ -486,7 +496,7 @@ insert into t_product (p_id,p_name,p_price,p_detail_title,p_detail_context,p_rec
     '추천하는 상품입니다.',
     'recommend',
     'admin',
-    'accessory');
+    'shoes');
 
 insert into t_product (p_id,p_name,p_price,p_detail_title,p_detail_context,p_recommend,admin_id,p_category) 
     values(
@@ -520,7 +530,7 @@ insert into t_product (p_id,p_name,p_price,p_detail_title,p_detail_context,p_rec
     '일반상품입니다.',
     'no',
     'admin',
-    'accessory');
+    'shoes');
 
 
 -- 관리자 추가

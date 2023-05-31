@@ -1,7 +1,11 @@
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <!-- 추가할부분 -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@taglib prefix ="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix ="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
+<input id="contextPath" type="hidden" value="${contextPath}">
+<c:set var="helpList" value="${helpList[0]}" />
+<c:set var="image" value="${helpList[1]}" />
 <div class="helpList_wrap">
 	<div class="container">
 		<div class="page_top">
@@ -22,31 +26,43 @@
 					</span>
 				</div>
 				<div class="form_context orderList">
-					<a href="${contextPath}/help/memberHelp/1" class="help_line">
+					<c:forEach var="help" items="${helpList}" varStatus="i">
+					<a href="${contextPath}/help/memberHelp/${help.h_number}" class="help_line">
 						<div class="img_box box">
-							<div class="img"></div>
+							<div class="img">
+								<img src="${contextPath}/image/${image['h_number']}" alt="">
+							</div>
 						</div>
 						<div class="title_box box">
 							<div class="text">
 								<div class="title txt">
-									문의 제목입니다.
+									${help.h_title}
 								</div>
 								<div class="category txt">
-									교환ㆍ환불
+									${help.h_category}
 								</div>
 							</div>
 
 						</div>
 						<div class="status_box box">
 							<div class="status">
-								<span class="wait">답변 대기중</span>
-								<!-- <span class="complete">답변 완료</span> -->
+								<c:choose>
+									<c:when test="${help.h_status == null}">
+										<span class="wait">답변 대기중</span>
+									</c:when>
+									<c:when test="${help.h_status == 'answered'}">
+										<span class="complete">답변 완료</span>
+									</c:when>
+								</c:choose>
 							</div>
 							<div class="modify">
-								<button class="btn btn3 modbtn">수정하기</button>
+								<c:if test="${help.h_status == null}">
+									<button class="btn btn3 modbtn">수정하기</button>
+								</c:if>
 							</div>
 						</div>
 					</a>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

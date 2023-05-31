@@ -17,7 +17,7 @@ buy_btn.addEventListener("click",function(){
         },
         success:function(data,textStatus){
             alert("장바구니로 이동합니다.");
-            location.replace(contextPath+"/cart/cartList.do");
+            location.replace(contextPath+"/cart/cartList");
         },
         error:function(data,textStatus){
             alert("에러가 발생했습니다.");

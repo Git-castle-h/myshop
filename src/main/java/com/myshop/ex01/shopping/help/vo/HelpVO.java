@@ -14,6 +14,13 @@ public class HelpVO {
 	private String h_context;
 	private String h_answer_title;
 	private String h_answer_context;
+	private String h_status;
+	public String getH_status() {
+		return h_status;
+	}
+	public void setH_status(String h_status) {
+		this.h_status = h_status;
+	}
 	private Date h_date;
 	private String admin_id;
 	

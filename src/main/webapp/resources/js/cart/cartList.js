@@ -145,7 +145,7 @@ cart_line_arr.forEach(function(e){
 
                 });
                 // modal_select 동적 추가 end
-
+                modal_wrap.classList.add("on");
             },
             error:function(data,textStatus){
                 alert("에러가 발생했습니다.");

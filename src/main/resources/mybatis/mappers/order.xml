@@ -12,21 +12,27 @@
 		<result property="p_price" column="p_price" />
 		<result property="o_number" column="o_number" />
 		<result property="o_status" column="o_status" />
-		<result property="o_address" column="o_address1" />
-		<result property="o_address" column="o_address2" />
-		<result property="o_address" column="o_address3" />
+		<result property="o_address1" column="o_address1" />
+		<result property="o_address2" column="o_address2" />
+		<result property="o_address3" column="o_address3" />
 
 	</resultMap>	
 	
-     <select id="s_orderList" parameterType="String" resultMap="java.util.Map"   >
+     <select id="s_orderList" resultType="list"   >
         <![CDATA[
       		select * from t_order
 	    ]]>
 	</select>
 	
-	<select id="s_helpById" resultMap="helpResult"   parameterType="String"  >
+	<select id="orderList" resultType="OrderVO"   parameterType="String"  >
+        <![CDATA[
+	    	select * from t_order where m_id = #{value}
+	    ]]>
+	</select>
+	
+	<select id="s_orderByID" resultType="OrderVO"   parameterType="OrderVO"  >
 	    <![CDATA[
-	    	select * from t_order where m_id = #{m_id}
+	    	select * from t_order where m_id = #{m_id} and o_id = #{o_id}
     	]]>
 	</select>
 	
@@ -40,19 +46,19 @@
 		                o_id,
 	                    p_name,
 	                    p_price,
-	                    o_status,
+	                    p_option,
 	                    o_number,
 						o_address1,
 						o_address2,
 						o_address3
-
+			 )
   			values(
   			      #{m_id},
   			      #{p_id},
   			      #{o_id},
   			      #{p_name},
   			      #{p_price},
-  			      #{o_status},
+  			      #{p_option},
   			      #{o_number},
   			      #{o_address1},
   			      #{o_address2},
@@ -62,33 +68,44 @@
 		]]>
 	</insert> 
 	
-	<update id="updateOrder" parameterType="java.util.Map"   >
-		   update t_order(
-			<set> 	
-			      <if test=" o_status!='' and o_status!=null">
+	<update id="updateOrder" parameterType="OrderVO"   >
+		   update t_order
+   			<set> 	
+			      <if test='o_status != "" and o_status != null'>
 			        o_status=#{o_status},
 			      </if>
-    		      <if test=" o_number!='' o_number!=null">
+    		      <if test='p_option != "" and p_option != null'>
+			        p_option=#{p_option},
+			      </if>
+       		      <if test='p_price != "" and p_price != null'>
+			        p_price=#{p_price},
+			      </if>
+        		  <if test='o_number != "" and o_number != null'>
 			        o_number=#{o_number},
 			      </if>
-			      <if test=" o_address1!='' o_address1!=null">
+			      <if test='o_address1 != "" and o_address1 != null'>
 			        o_address1=#{o_address1},
 			      </if>
-			      <if test=" o_address2!='' o_address2!=null">
+			      <if test='o_address2 != "" and o_address2 != null'>
 			        o_address2=#{o_address2},
 			      </if>
-			      <if test=" o_address3!='' o_address3!=null">
-			        o_address3=#{o_address3},
+			      <if test='o_address3 != "" and o_address3 != null'>
+			        o_address3=#{o_address3}
 			      </if>
 		    </set>
     	    where 
-	    	o_id=#{o_id}
+	    	o_id=#{o_id} and m_id=#{m_id}
 	</update> 
   
-	<delete id="deleteOrder" parameterType="String">
+	<delete id="delOrder" parameterType="OrderVO">
 		  delete from t_order
 		  where o_id=#{o_id}
 	</delete>
 	
+	<select id="countOrder" parameterType="OrderVO" resultType="String">
+		<![CDATA[
+			select count(*)from t_order where m_id = #{m_id} 
+		]]>
+	</select>
 
 </mapper>

@@ -20,20 +20,19 @@
 		<result property="banner_image_name" column="banner_image_name" />
 	</resultMap>		
    
-     <select id="s_bannerList" parameterType="String" resultMap="java.util.Map"   >
+ <select id="s_bannerList" resultMap="bannerResult" resultType="list"   >
         <![CDATA[
       		select * from t_banner
 	    ]]>
 	</select>
 	
-     <select id="s_bannerImage" parameterType="String" resultMap="java.util.Map"   >
+     <select id="s_bannerImage" parameterType="BannerVO" resultMap="bannerImageResult" >
         <![CDATA[
       		select * from t_banner_image
       		where banner_name = #{banner_name}
 	    ]]>
 	</select>
 	
-
 	
 	<insert id="addBanner" parameterType="BannerVO"   >
    	    <![CDATA[
@@ -54,8 +53,8 @@
 		]]>
 	</insert> 
 	
-	<update id="updateBanner" parameterType="java.util.Map"   >
-		   update t_banner(
+	<update id="updateBanner" parameterType="BannerVO"   >
+		   update t_banner
 			<set> 	
 			      <if test=" banner_title!='' banner_title!=null">
 			        banner_title=#{banner_title},
@@ -94,8 +93,8 @@
 		]]>
 	</insert> 
 	
-	<update id="updateBannerImage" parameterType="java.util.Map"   >
-		   update t_banner(
+	<update id="updateBannerImage" parameterType="Banner_imageVO"   >
+		   update t_banner
 			<set> 	
 			      <if test=" banner_image_type!='' banner_image_type!=null">
 			        banner_image_type=#{banner_image_type},
@@ -111,12 +110,12 @@
 	    	banner_name=#{banner_name}
 	</update> 
 	
-	<delete id="deleteBanner" parameterType="String">
+	<delete id="deleteBanner" parameterType="BannerVO">
 		delete from t_banner
 		where banner_name =#{banner_name}
 	</delete>
 	
-	<delete id="deleteBannerImage" parameterType="String">
+	<delete id="deleteBannerImage" parameterType="Banner_imageVO">
 		delete from t_banner_image
 		where banner_name =#{banner_name}
 	</delete>

@@ -3,6 +3,13 @@
 <%@taglib prefix ="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix ="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
+
+<c:set var="product" value="${productDetail[0]}" />
+<c:set var="options" value="${productDetail[1]}" />
+<c:set var="productImage" value="${productDetail[2]}" />
+<c:set var="productTImage" value="${productDetail[3]}" />
+
+
 <input id="contextPath" type="hidden" value="${contextPath}">
 <script> let contextPath = document.querySelector("#contextPath").value; </script>
 <div class="productDetail_wrap">
@@ -10,7 +17,7 @@
 		<div class="page_top">
 			<div class="page_title_wrap">
 				<div class="page_title">
-					<span>Clothes</span>
+					<span>${product.p_category}</span>
 				<!-- <span>Accessory</span>
 				<span>Shoes</span> -->
 				</div>
@@ -18,21 +25,25 @@
 		</div>
 		<div class="page_context_wrap">
 			<div class="left section">
-				<div class="img_box"></div>
+				<div class="img_box">
+					<c:if test="not empty ${productImage}">
+						<img src="${contextPath}/images/${productImage.p_image_name}" alt="">
+					</c:if>
+				</div>
 				<script src="${contextPath}/resources/js/product/img_box.js"></script>
 			</div>
 			<div class="right section">
 				<div class="tag_box">
-					<div class="name">ITEM NAME</div>
+					<div class="name">${product.p_name}</div>
 					<div class="price">
-						<span class="won">\</span><span class="num">10000</span>
+						<span class="won">\</span><span class="num">${product.p_price}</span>
 					</div>
 					<div class="description">Description</div>
 				</div>
 				<div class="detail_box">
-					<div class="title">PRODUCT DETAIL</div>
+					<div class="title">${product.p_detail_title}</div>
 					<div class="context">
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+						${product.p_detail_context}
 					</div>
 				</div>
 				<div class="selection_box">
@@ -42,7 +53,9 @@
 						<button class="option toggle_btn"><span class="txt">OPTION</span><i class="down fa-solid fa-chevron-down"></i></button>
 						<ul class="select_box hide">
 							<li><button class="option select_btn disabled"><span class="txt">OPTION</span></button></li>
-							<li><button class="option select_btn" data-value="SELECTED"><span class="txt">SELECTED</span></button></li>
+							<c:forEach var="opt" items="${options}"> 
+							<li><button class="option select_btn" data-value="${opt.p_option}"><span class="txt">${opt.p_option}</span></button></li>
+							</c:forEach>
 						</ul>
 						<script src="${contextPath}/resources/js/product/select_wrapper1.js"></script>
 					</div>

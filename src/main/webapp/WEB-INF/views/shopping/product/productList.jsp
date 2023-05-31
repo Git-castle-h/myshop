@@ -8,7 +8,7 @@
 		<div class="page_top">
 			<div class="page_title_wrap">
 				<div class="page_title">
-					<span>${p_list.p_category}</span>
+					<span>${p_category}</span>
 				<!-- <span>Accessory</span>
 				<span>Shoes</span> -->
 				</div>
@@ -45,17 +45,24 @@
 				</div> -->
 			</div>
 		</div>
-		<div class="page_context_wrap">
-			<a class="product_wrap" href="${contextPath}/product/productDetail/1">
-				<div class="img_box"></div>
-				<div class="tag_box">
-					<div class="name">Item Name</div>
-					<div class="price">
-						<span class="won">\</span><span class="num">10000</span>
-					</div>
-				</div>
-			</a>
-			<script src="${contextPath}/resources/js/product/img_box.js"></script>
-		</div>
+			<div class="page_context_wrap">
+				<c:forEach var="product" items="${productCate[0]}" varStatus="status">
+					<a class="product_wrap" href="${contextPath}/product/productDetail/${product.p_id}">
+						<div class="img_box">
+							<c:if test="not empty productCate[1][count]">
+								<img src="${contextPath}/image/${productCate[1][count].p_image_name}">
+							</c:if>
+						</div>
+						<div class="tag_box">
+							<div class="name">${product.p_name}</div>
+							<div class="price">
+								<span class="won">\</span><span class="num">${product.p_price}</span>
+							</div>
+						</div>
+					</a>
+				</c:forEach>
+			</div>
+	
+		<script src="${contextPath}/resources/js/product/img_box.js"></script>
 	</div>
 </div>

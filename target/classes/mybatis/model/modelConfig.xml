@@ -13,6 +13,8 @@
 		<typeAlias type="com.myshop.ex01.shopping.order.vo.OrderVO" alias="OrderVO"/>
 		<typeAlias type="com.myshop.ex01.shopping.product.vo.ProductVO" alias="ProductVO"/>
 		<typeAlias type="com.myshop.ex01.shopping.product.vo.Product_imageVO" alias="Product_imageVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.product.vo.Product_t_imageVO" alias="Product_t_imageVO"/>
+		<typeAlias type="com.myshop.ex01.shopping.product.vo.OptionVO" alias="OptionVO"/>
 		
 		<!-- admin -->
 		<typeAlias type="com.myshop.ex01.admin.help.vo.Admin_helpVO" alias="Admin_helpVO"/>

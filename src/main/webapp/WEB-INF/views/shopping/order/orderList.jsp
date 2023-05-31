@@ -3,6 +3,10 @@
 <%@taglib prefix ="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix ="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
+<c:set var="Order" value="${orderList[0]}" />
+<c:set var="product" value="${orderList[1]}" />
+<c:set var="image" value="${orderList[2]}" />
+<c:set var="t_image" value="${orderList[3]}" />
 <input id="contextPath" type="hidden" value="${contextPath}">
 <script> let contextPath = document.querySelector("#contextPath").value; </script>
 <div class="orderList_wrap">
@@ -31,17 +35,22 @@
 					</span>
 				</div>
 				<div class="form_context orderList">
-					<div class="order_line" data-id="1">
+					<c:forEach var="order" items="${Order}" varStatus="i">
+					<div class="order_line" data-id="${order.o_id}">
 						<div class="img_box box">
-							<div class="img"></div>
+							<div class="img">
+								<c:if test="not empty ${t_image[i.index]}">
+									<img src="${contextPath}/${t_image[i.index].p_t_image_id}" alt="">
+								</c:if>
+							</div>
 						</div>
 						<div class="name_box box">
 							<div class="text">
 								<div class="category txt">
-									PRODUCT CATEGORY
+									${product[i.index].p_category}
 								</div>
 								<div class="name txt">
-									PRODUCT NAME
+									${order.p_name}
 								</div>
 							</div>
 							<div class="delete">
@@ -52,10 +61,10 @@
 						</div>
 						<div class="option_box box">
 							<div class="option txt">
-								옵션1 / 옵션2 / 옵션3
+								${order.p_option}
 							</div>
 							<div class="count txt">
-								<span class="num">1</span>
+								<span class="num">${order.o_number}</span>	
 								<span>개</span>
 							</div>
 							<div class="mod">
@@ -64,24 +73,35 @@
 						</div>
 						<div class="address_box box">
 							<div class="main txt">
-								성남시 00거리 00길
+								${order.o_address2}
 							</div>
 							<div class="detail txt">
-								11-11 (상세주소)
+								${order.o_address3}
 							</div>
 						</div>
 						<div class="status_box box">
-							<span class="accept status">주문접수</span>
-							<!-- <span class="ready status">배송준비</span> -->
-							<!-- <span class="proceed status">배송중</span> -->
-							<!-- <span class="complete status">배송완료</span> -->
+							<c:choose>
+								<c:when test="${order.o_status}=='accepted'">
+									<span class="accept status">주문접수</span>
+								</c:when>
+								<c:when test="${order.o_status}=='ready'">
+									<span class="ready status">배송준비</span>
+								</c:when>
+								<c:when test="${order.o_status}=='ing'">
+									<span class="proceed status">배송중</span>
+								</c:when>
+								<c:when test="${order.o_status}=='complete'">
+									<span class="complete status">배송완료</span>
+								</c:when>
+							</c:choose>
 						</div>
 						<div class="price_box box">
 							<span class="price txt">
-								10,000
+								${order.p_price}
 							</span>
 						</div>
 					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

@@ -17,9 +17,16 @@
 	</resultMap>	
 	
    
-     <select id="cartList" parameterType="String" resultMap="java.util.Map"   >
+     <select id="cartList" parameterType="String" resultType="CartVO"   >
         <![CDATA[
-      		select * from t_cart where m_id = #{m_id}
+      		select * from t_cart where m_id = #{value}
+	    ]]>
+	</select>
+	
+
+     <select id="s_cartByID" parameterType="CartVO" resultType="CartVO"   >
+        <![CDATA[
+      		select * from t_cart where m_id = #{m_id} and c_id = #{c_id}
 	    ]]>
 	</select>
 	
@@ -34,7 +41,7 @@
 	                    p_name,
 	                    p_option,
 	                    p_price,
-						c_number
+						c_number)
 
   			values(
 		  			      #{m_id},
@@ -48,30 +55,35 @@
 		]]>
 	</insert> 
 	
-	<delete id="delCart" parameterType="String">
+	<delete id="delCart" parameterType="CartVO">
 		<![CDATA[
 			delete from t_cart
 			where c_id = #{c_id}
 		]]>
 	</delete>
 	
-	<update id="updateCart" parameterType="java.util.Map"   >
-		   update t_cart(
-			<set> 	
-			      <if test=" p_option!='' and p_option!=null">
+	<update id="updateCart" parameterType="CartVO"   >
+		   update t_cart
+	   			<set>
+	   			<if test='p_option != "" and p_option != null'>
 			        p_option=#{p_option},
 			      </if>
-			      <if test=" c_number!='' c_number!=null">
+    		      <if test='c_number != "" and c_number != null'>
 			        c_number=#{c_number},
 			      </if>
-			      <if test=" p_price!='' p_price!=null">
+       		      <if test='p_price != "" and p_price != null'>
 			        p_price=#{p_price},
 			      </if>
-		    </set>
+		        </set>
     	    where 
-	    	c_id=#{c_id}
+	    	c_id=#{c_id} and m_id =#{m_id}
 	</update> 
 
+	<select id="countCart" parameterType="CartVO" resultType="String">
+		<![CDATA[
+			select count(*)from t_cart where m_id = #{m_id} 
+		]]>
+	</select>
 
 
 </mapper>

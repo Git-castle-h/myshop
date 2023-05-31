@@ -3,6 +3,11 @@
 <%@taglib prefix ="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix ="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
+<c:set var="Cart" value="${cartList[0]}" />
+<c:set var="product" value="${cartList[1]}" />
+<c:set var="image" value="${cartList[2]}" />
+<c:set var="t_image" value="${cartList[3]}" />
+
 <input id="contextPath" type="hidden" value="${contextPath}">
 <script> let contextPath = document.querySelector("#contextPath").value; </script>
 <div class="cartList_wrap">
@@ -26,18 +31,20 @@
 					</span>
 				</div>
 				<div class="form_context orderList">
-					<div class="cart_line" data-id="1">
+					<c:forEach var ="cart" items="${Cart}"  varStatus="i">
+					<div class="cart_line" data-id="${cart.c_id}">
 						<div class="img_box box">
 							<input type="checkbox" class="cart_line_select" checked="true">
-							<div class="img"></div>
+							<div class="img">
+							</div>
 						</div>
 						<div class="name_box box">
 							<div class="text">
 								<div class="category txt">
-									clothes
+									${product[i.index].p_category}
 								</div>
 								<div class="name txt">
-									추천 Clothes1
+									${product[i.index].p_name}
 								</div>
 							</div>
 							<div class="delete">
@@ -48,10 +55,12 @@
 						</div>
 						<div class="option_box box">
 							<div class="option txt">
-								옵션1 / 옵션2 / 옵션3
+								${cart.p_option}
 							</div>
 							<div class="count txt">
-								<span class="num">1</span>
+								<span class="num">
+									${cart.c_number}
+								</span>
 								<span>개</span>
 							</div>
 							<div class="mod">
@@ -60,10 +69,11 @@
 						</div>
 						<div class="price_box box">
 							<span class="price txt">
-								10000
+								${cart.p_price}
 							</span>
 						</div>
 					</div>
+					</c:forEach>
 				</div>
 				<div class="form_context end">
 					<div class="order_sum">

@@ -11,6 +11,7 @@
 		<result property="h_category" column="h_category" />
 		<result property="h_product_name" column="h_product_name" />
 		<result property="h_context" column="h_context" />
+		<result property="h_status" column="h_status" />
 		
 		<result property="h_answer_title" column="h_answer_title" />
 		<result property="h_answer_context" column="h_answer_context" />
@@ -27,19 +28,25 @@
 		<result property="h_image_name" column="h_image_name" />
 	</resultMap>
    
-     <select id="s_helpList" parameterType="String" resultMap="java.util.Map"   >
+     <select id="s_helpList" resultType="list">
         <![CDATA[
       		select * from t_help
 	    ]]>
 	</select>
 	
-	<select id="s_helpById" resultMap="helpResult"   parameterType="String"  >
+	<select id="s_helpListById" resultMap="helpResult"   parameterType="list"  >
 	    <![CDATA[
 	    	select * from t_help where m_id = #{m_id}
     	]]>
 	</select>
 	
-	<select id="s_helpImage" resultMap="helpImageResult"   parameterType="java.util.Map"  >
+	<select id="s_helpById" resultMap="helpResult"   parameterType="HelpVO"  >
+	    <![CDATA[
+	    	select * from t_help where m_id = #{m_id} and h_number = #{h_number}
+    	]]>
+	</select>
+	
+	<select id="s_helpImage" resultMap="helpImageResult"   parameterType="Help_imageVO"  >
 	    <![CDATA[
 	    	select * from t_help_image where h_number = #{h_number} and m_id = #{m_id}
     	]]>
@@ -55,7 +62,7 @@
 	                    h_title,
 	                    h_category,
 	                    h_product_name,
-						h_context
+						h_context)
 
   			values(
   			      #{m_id},
@@ -68,16 +75,16 @@
 		]]>
 	</insert> 
 	
-	<update id="updateHelp" parameterType="java.util.HashMap" >
-	   update t_product
+	<update id="updateHelp" parameterType="HelpVO" >
+	   update t_help
 	    <set> 
 	      <if test=" h_title!='' and h_title!=null">
 	        h_title=#{h_title},
 	      </if>
-	      <if test=" h_category!='' h_category!=null">
+	      <if test=" h_category!='' and h_category!=null">
 	        h_category=#{h_category},
 	      </if>
-	      <if test=" h_product_name!='' h_product_name!=null">
+	      <if test=" h_product_name!='' and h_product_name!=null">
 	        h_product_name=#{h_product_name},
 	      </if>
 	      <if test=" h_context!='' and h_context!=null">
@@ -85,10 +92,11 @@
 	      </if>
 	     </set>
 	    where 
+	    m_id = #{m_id} and
 	    h_number=#{h_number}
 	</update>
 	
-	<delete id="deleteHelp" parameterType="String">
+	<delete id="deleteHelp" parameterType="HelpVO">
 		delete from t_help
  		where h_number = #{h_number}
 	</delete>
@@ -114,16 +122,16 @@
 	</insert> 
 
 	
-	<update id="updatehelpImage" parameterType="java.util.Map"   >
+	<update id="updatehelpImage" parameterType="Help_imageVO"   >
 		   update t_help_image(
 			<set> 	
 			      <if test=" h_image_date!='' and h_image_date!=null">
 			        h_image_date=#{h_image_date},
 			      </if>
-			      <if test=" h_image_type!='' h_image_type!=null">
+			      <if test=" h_image_type!='' and h_image_type!=null">
 			        h_image_type=#{h_image_type},
 			      </if>
-			      <if test=" h_image_id!='' h_image_id!=null">
+			      <if test=" h_image_id!='' and h_image_id!=null">
 			        h_image_id=#{h_image_id},
 			      </if>
 			      <if test=" h_image_name!='' and h_image_name!=null">
@@ -140,7 +148,11 @@
  		where h_number = #{h_number}
 	</delete>
 	
-	
+	<select id="countHelp" parameterType="HelpVO" resultType="String">
+		<![CDATA[
+			select count(*)from t_help where m_id = #{m_id} 
+		]]>
+	</select>
 
 	
 
