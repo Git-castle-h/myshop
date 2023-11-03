@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
 	<typeAliases>
 	
 		<typeAlias type="com.myshop.ex01.shopping.cart.vo.CartVO" alias="CartVO"/>
@@ -23,7 +26,9 @@
 		<typeAlias type="com.myshop.ex01.admin.member.vo.Admin_memberVO" alias="Admin_memberVO"/>
 		<typeAlias type="com.myshop.ex01.admin.order.vo.Admin_orderVO" alias="Admin_orderVO"/>
 		<typeAlias type="com.myshop.ex01.admin.product.vo.Admin_product_imageVO" alias="Admin_product_imageVO"/>
+		<typeAlias type="com.myshop.ex01.admin.product.vo.Admin_product_t_imageVO" alias="Admin_product_t_imageVO"/>
 		<typeAlias type="com.myshop.ex01.admin.product.vo.Admin_productVO" alias="Admin_productVO"/>
+		<typeAlias type="com.myshop.ex01.admin.product.vo.Admin_optionVO" alias="Admin_optionVO"/>
 		
 	</typeAliases>
 </configuration>

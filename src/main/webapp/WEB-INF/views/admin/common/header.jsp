@@ -14,6 +14,7 @@
                 <li><a href="${contextPath}/admin/product/productList">상품관리</a></li>
                 <!-- <li><a href="">팝업관리</a></li> -->
                 <li><a href="${contextPath}/admin/order/orderList">주문관리</a></li>
+                <li><a href="${contextPath}/admin/help/helpList">문의관리</a></li>
                 <li><a href="${contextPath}/admin/member/memberList">회원관리</a></li>
                 <li><a href="${conntextPath}/admin/login/login" class="login"><span class="menuIco"><i class="fa-solid fa-power-off"></i></span>&nbsp;LOGIN</a></li>
         </div>

@@ -13,7 +13,7 @@ import com.myshop.ex01.shopping.product.vo.ProductVO;
 import com.myshop.ex01.shopping.product.vo.Product_imageVO;
 import com.myshop.ex01.shopping.product.vo.Product_t_imageVO;
 
-@Repository("productDAO")
+@Repository("AdminProductDAO")
 public class ProductDAOImpl implements ProductDAO{
 	
 
@@ -132,6 +132,8 @@ public class ProductDAOImpl implements ProductDAO{
 		sqlSession.delete("mapper.product.delOption",ProductVO);
 		
 	}	
+	
+
 
 	
 }

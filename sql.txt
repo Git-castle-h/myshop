@@ -81,9 +81,7 @@ CREATE TABLE t_option (
 CREATE UNIQUE INDEX PK_t_option
 	ON t_option ( -- 상품 옵션 테이블
 		p_id     ASC, -- 상품번호
-		p_name   ASC, -- 상품이름
-		p_option ASC, -- 상품옵션
-		p_price  ASC  -- 상품가격
+		p_option ASC  -- 상품옵션
 	);
 
 -- 상품 옵션 테이블
@@ -91,10 +89,8 @@ ALTER TABLE t_option
 	ADD
 		CONSTRAINT PK_t_option -- 상품 옵션 테이블 기본키
 		PRIMARY KEY (
-			p_id,     -- 상품번호
-			p_name,   -- 상품이름
-			p_option, -- 상품옵션
-			p_price   -- 상품가격
+			p_id     , -- 상품번호
+			p_option   -- 상품옵션
 		);
 
 -- 상품 이미지 테이블

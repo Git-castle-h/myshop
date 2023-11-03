@@ -1,7 +1,13 @@
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <!-- 추가할부분 -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@taglib prefix ="fmt" uri ="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix ="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
+<input id="contextPath" type="hidden" value="${contextPath}">
+<script> let contextPath = document.querySelector("#contextPath").value; </script>
+<c:set var="products" value="${productList[0]}"/>
+<c:set var="productImage" value="${productList[1]}"/>
+<c:set var="productTImage" value="${productList[2]}"/>
 <div class="productList_wrap">
 	<div class="container">
 		<div class="page_top">
@@ -39,29 +45,37 @@
 					</span>
 				</div>
 				<div class="form_context productList">
-					<a href="${contextPath}/admin/product/modProduct/1" class="product_line">
-						<div class="img_box box">
-							<div class="img"></div>
-						</div>
-						<div class="title_box box">
-								<div class="text">
-									<div class="category txt">
-										PRODUCT CATEGORY
-									</div>
-									<div class="name txt">
-										PRODUCT NAME
-									</div>
-									<div class="price txt">
-										\ 10,000
-									</div>
+					<c:forEach var="product" items="${products}" varStatus="i">
+						<a href="${contextPath}/admin/product/modProduct/${product.p_id}" class="product_line">
+							<div class="img_box box">
+								<div class="img">
+									<c:choose>
+										<c:when test="${productTImage[i.index].p_t_image_name != null}">
+											<img src ="${contextPath}/image/${productTImage[i.index].p_t_image_name}">
+										</c:when>
+									</c:choose>
 								</div>
-						</div>
-						<div class="mod_box box">
-							<div class="mod">
-								<button class="mod_btn btn btn1">상품 수정</button>
 							</div>
-						</div>
-					</a>
+							<div class="title_box box">
+									<div class="text">
+										<div class="category txt">
+											${product.p_category}
+										</div>
+										<div class="name txt">
+											${product.p_name}
+										</div>
+										<div class="price txt">
+											${product.p_price}
+										</div>
+									</div>
+							</div>
+							<div class="mod_box box">
+								<div class="mod">
+									<button class="mod_btn btn btn1">상품 수정</button>
+								</div>
+							</div>
+						</a>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

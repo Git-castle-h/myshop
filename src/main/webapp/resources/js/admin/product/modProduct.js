@@ -38,6 +38,7 @@
         }
     }
 
+    po_line_verify();
 //====================================
 
 let mp_btn = document.querySelector(".mp_btn");
@@ -52,26 +53,32 @@ mp_btn.addEventListener("click",function(){
 
     if(mp_rec_check.checked){
         mp_rec = "recommend";
+    }else{
+        mp_rec = "no";
     }
 
     let mp_name =document.querySelector(".mp_name");
     let mp_price =document.querySelector(".mp_price");
     let mp_d_title = document.querySelector(".pd_title");
     let mp_d_cxt = document.querySelector(".pd_context");
-    let mp_ess_check = document.querySelector(".po_essential_input");
+    // let mp_ess_check = document.querySelector(".po_essential_input");
     let mp_ess = "";
 
-    if(mp_ess_check.checked){
-        mp_ess = "essential";
-    }
+    // if(mp_ess_check.checked){
+    //     mp_ess = "essential";
+    // }
 
     let mp_option_arr = document.querySelectorAll(".po_line .po_option");
     let mp_options = [];
 
     mp_option_arr.forEach(function(e){
         let option = e.value;
-        mp_options.push(option);
+        if(option != ""){
+            mp_options.push(option);
+            console.log("pushed "+option);
+        }
     });
+    console.log(mp_options);
 
     $.ajax({
         type:'POST',
@@ -92,6 +99,7 @@ mp_btn.addEventListener("click",function(){
         },
         success:function(data,textStatus){
             console.log("작업이 순조롭게 진행되었습니다.");
+            alert("수정되었습니다");
             location.reload();
         },
         error:function(data,textStatus){

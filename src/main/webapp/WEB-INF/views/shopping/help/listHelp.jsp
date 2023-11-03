@@ -57,7 +57,7 @@
 							</div>
 							<div class="modify">
 								<c:if test="${help.h_status == null}">
-									<button class="btn btn3 modbtn">수정하기</button>
+									<button class="btn btn3 mh_mod">수정하기</button>
 								</c:if>
 							</div>
 						</div>

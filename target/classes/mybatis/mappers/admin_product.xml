@@ -3,9 +3,9 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.product">
+<mapper namespace="mapper.admin_product">
 <!-- 리절트 맵 정의 -->	
-	<resultMap id="productResult" type="ProductVO">
+	<resultMap id="productResult" type="admin_productVO">
 		<result property="p_id" column="p_id" />
 		<result property="p_name" column="p_name" />
 		<result property="p_price" column="p_price" />
@@ -18,7 +18,7 @@
 		<result property="p_category" column="p_category" />
 	</resultMap>	
 
-	<resultMap id="product_imageResult" type="Product_imageVO">
+	<resultMap id="product_imageResult" type="admin_product_imageVO">
 	   <result property="p_id" column="p_id" />
 	   <result property="p_name" column="p_name" />
 	   <result property="p_price" column="p_price" />
@@ -28,7 +28,7 @@
 	   <result property="p_image_name" column="p_image_name" />
 	</resultMap>
 	
-	<resultMap id="product_t_imageResult" type="Product_t_imageVO">
+	<resultMap id="product_t_imageResult" type="Admin_product_t_imageVO">
 	   <result property="p_id" column="p_id" />
 	   <result property="p_name" column="p_name" />
 	   <result property="p_price" column="p_price" />
@@ -38,7 +38,7 @@
 	   <result property="p_image_name" column="p_image_name" />
 	</resultMap>
 	
-	<resultMap id="optionResult" type="OptionVO">
+	<resultMap id="optionResult" type="Admin_optionVO">
 	   <result property="p_id" column="p_id" />
 	   <result property="p_name" column="p_name" />
 	   <result property="p_price" column="p_price" />
@@ -53,13 +53,19 @@
 	    ]]>
 	</select>
 	
-	<select id="s_productById" resultMap="productResult"  parameterType="ProductVO" resultType="list"  >
+	<select id="get_productNum" resultType="Integer">
+	    <![CDATA[
+	    	select count(*)from t_product
+    	]]>
+	</select>
+	
+	<select id="s_productById" resultMap="productResult"  parameterType="String" resultType="Admin_productVO"  >
 	    <![CDATA[
 	    	select * from t_product where p_id = #{p_id}
     	]]>
 	</select>
 	
-	<select id="s_productByCate" resultMap="productResult"  parameterType="ProductVO" resultType="list"  >
+	<select id="s_productByCate" resultMap="productResult"  parameterType="Admin_productVO" resultType="list"  >
 	    <![CDATA[
 	    	select * from t_product where p_category = #{p_category}
     	]]>
@@ -72,19 +78,19 @@
 	</select>
 	
 	
-	<select id="s_productImageById" resultMap="product_imageResult"   parameterType="ProductVO"  >
+	<select id="s_productImageById" resultMap="product_imageResult"   parameterType="Admin_productVO"  >
 	    <![CDATA[
 	    	select * from t_product_image where p_id = #{p_id}
     	]]>
 	</select>
 	
-	<select id="s_product_t_ImageById" resultMap="product_t_imageResult"   parameterType="ProductVO"  >
+	<select id="s_product_t_ImageById" resultMap="product_t_imageResult"   parameterType="Admin_productVO"  >
 	    <![CDATA[
 	    	select * from t_product_t_image where p_id = #{p_id}
     	]]>
 	</select>
 	
-	<insert id="addProduct" parameterType="ProductVO"   >
+	<insert id="addProduct" parameterType="Admin_productVO"   >
 	    
 	    <![CDATA[
 		   insert into t_product(
@@ -95,7 +101,7 @@
 	                    p_detail_context,
 						p_recommend,
 						admin_id,
-						p_category
+						p_category)
 
   			values(
   			      #{p_id},
@@ -112,7 +118,7 @@
 	
 
 	
-	<update id="updateProduct" parameterType="ProductVO" >
+	<update id="updateProduct" parameterType="Admin_productVO" >
 	   update t_product
 	    <set> 
 	      <if test=" p_name!='' and p_name!=null">
@@ -124,7 +130,7 @@
 	      <if test=" p_detail_title!='' and p_detail_title!=null">
 	        p_detail_title=#{p_detail_title},
 	      </if>
-	      <if test=" p_detail_context!='' p_detail_context!=null">
+	      <if test=" p_detail_context!='' and p_detail_context!=null">
 	        p_detail_context=#{p_detail_context},
 	      </if>
 	      <if test=" p_recommend!='' and p_recommend!=null">
@@ -136,20 +142,20 @@
 	      <if test=" p_category!='' and p_category!=null">
 	        p_category=#{p_category},
 	      </if>
-	      <if test=" goods_page_total!='' and goods_page_total!=null">
+	      <!-- <if test=" goods_page_total!='' and goods_page_total!=null">
 	        goods_page_total=#{goods_page_total},
-	      </if>
+	      </if> -->
 	     </set>
 	    where 
 	    p_id=#{p_id}
 	</update>	
-	<delete id="deleteProduct" parameterType="ProductVO">
+	<delete id="deleteProduct" parameterType="Admin_productVO">
 	  delete from t_product
 	  where p_id=#{p_id}
 	</delete>
 	 
 	 
- 	<insert id="addProductImage" parameterType="Product_imageVO"   >
+ 	<insert id="addProductImage" parameterType="Admin_product_imageVO"   >
     <![CDATA[
 	   insert into t_product_image (p_id,
                                     p_name,
@@ -168,19 +174,19 @@
    								 )
 	]]>
 	</insert>
-	<update id="updateProductImage" parameterType="Product_imageVO">
+	<update id="updateProductImage" parameterType="Admin_product_imageVO">
 		update t_product_image
 		set p_image_name=#{p_image_name}
 		where	 
 		p_id=#{p_id} and p_image_id=#{p_image_id}
 	</update>
-	<delete id="delProductImage" parameterType="Product_imageVO">
+	<delete id="delProductImage" parameterType="Admin_product_imageVO">
 	  delete from t_product_image
 	  where p_image_id=#{p_image_id}
 	</delete>
 	
 	
-	<insert id="addProduct_t_Image" parameterType="Product_t_imageVO"   >
+	<insert id="addProduct_t_Image" parameterType="Admin_product_t_imageVO"   >
     <![CDATA[
 	   insert into t_product_image (p_id,
                                     p_name,
@@ -199,24 +205,24 @@
    								 )
 	]]>
 	</insert>
-	<update id="updateProduct_t_Image" parameterType="Product_t_imageVO">
+	<update id="updateProduct_t_Image" parameterType="Admin_product_t_imageVO">
 		update t_product_t_image
 		set p_t_image_name=#{p_t_image_name}
 		where	 
 		p_id=#{p_id} and p_t_image_id=#{p_t_image_id}
 	</update>
-	<delete id="delProduct_t_Image" parameterType="Product_t_imageVO">
+	<delete id="delProduct_t_Image" parameterType="Admin_product_t_imageVO">
 	  delete from t_product_t_image
 	  where p_t_image_id=#{p_t_image_id}
 	</delete>
 	
-   <select id="s_optionById" parameterType="ProductVO" resultMap="optionResult" resultType="list" >
+   <select id="s_optionById" parameterType="Admin_productVO" resultMap="optionResult" resultType="list" >
         <![CDATA[
-      		select * from t_option where p_id = #{p_id} ORDER BY p_option DESC
+      		select * from t_option where p_id = #{p_id} ORDER BY LPAD(p_option,100,'0') ASC
 	    ]]>
 	</select>
 	
-   <insert id="addOption" parameterType="OptionVO" >
+   <insert id="addOption" parameterType="Admin_optionVO" >
         <![CDATA[
 	   insert into t_option (p_id,
                              p_name,
@@ -230,16 +236,16 @@
 							#{p_option}	 )
 	    ]]>
 	</insert>
-	<update id="updateOption" parameterType="OptionVO">
+	<update id="updateOption" parameterType="Admin_optionVO">
 		update t_option
 		set p_option=#{p_option}
 		where	 
 		p_id=#{p_id}
 	</update>
 	
-	<delete id="delOption" parameterType="OptionVO">
+	<delete id="delOption" parameterType="Admin_optionVO">
 	  delete from t_option
-	  where p_id=#{p_option}
+	  where p_id=#{p_id}
 	</delete>
 	
 	

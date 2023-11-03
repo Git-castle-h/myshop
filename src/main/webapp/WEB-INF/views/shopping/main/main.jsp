@@ -42,7 +42,7 @@
                 <c:otherwise>
                     <a class="sub event"style="background-color:${banner[0][2].banner_color}">                
                 </c:otherwise>
-                </c:choose>
+            </c:choose>
                 <div class="title">
                     ${banner[0][2].banner_title}
                 </div>

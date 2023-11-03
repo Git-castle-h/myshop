@@ -56,16 +56,16 @@
 	<update id="updateBanner" parameterType="BannerVO"   >
 		   update t_banner
 			<set> 	
-			      <if test=" banner_title!='' banner_title!=null">
+			      <if test=" banner_title!='' and banner_title!=null">
 			        banner_title=#{banner_title},
 			      </if>
-			      <if test=" banner_detail!='' banner_detail!=null">
+			      <if test=" banner_detail!='' and banner_detail!=null">
 			        banner_detail=#{banner_detail},
 			      </if>
-    			  <if test=" banner_link!='' banner_link!=null">
+    			  <if test=" banner_link!='' and banner_link!=null">
 			        banner_link=#{banner_link},
 			      </if>
-			      <if test=" banner_color!='' banner_color!=null">
+			      <if test=" banner_color!='' and banner_color!=null">
 			        banner_color=#{banner_color},
 			      </if>
 		    </set>
@@ -96,13 +96,13 @@
 	<update id="updateBannerImage" parameterType="Banner_imageVO"   >
 		   update t_banner
 			<set> 	
-			      <if test=" banner_image_type!='' banner_image_type!=null">
+			      <if test=" banner_image_type!='' and banner_image_type!=null">
 			        banner_image_type=#{banner_image_type},
 			      </if>
-			      <if test=" banner_image_id='' banner_image_id!=null">
+			      <if test=" banner_image_id='' and banner_image_id!=null">
 			        banner_image_id=#{banner_image_id},
 			      </if>
-    			  <if test=" banner_image_name!='' banner_image_name!=null">
+    			  <if test=" banner_image_name!='' and banner_image_name!=null">
 			        banner_image_name=#{banner_image_name},
 			      </if>
 		    </set>

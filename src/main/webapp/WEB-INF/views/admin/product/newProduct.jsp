@@ -58,12 +58,15 @@
 						<div class="form_line">
 							<div class="select_wrapper2 mp_cate select">
 								<input type="hidden" class="select_input"/>
-								<button class="option toggle_btn"><span class="txt">CATEGORY</span><i class="down fa-solid fa-chevron-down"></i></button>
+								<button class="option toggle_btn">
+									<span class="txt">CATEGORY</span>
+									<i class="down fa-solid fa-chevron-down"></i>
+								</button>
 								<ul class="select_box hide">
-									<li><button class="option select_btn disabled"><span class="txt">CATEGORY</span></button></li>
-									<li><button class="option select_btn"><span class="txt">CLOTHES</span></button></li>
-									<li><button class="option select_btn"><span class="txt">ACCESSORY</span></button></li>
-									<li><button class="option select_btn"><span class="txt">SHOES</span></button></li>
+										<li><button class="option select_btn disabled"><span class="txt">CATEGORY</span></button></li>
+										<li><button class="option select_btn" data-value="clothes"><span class="txt">CLOTHES</span></button></li>
+										<li><button class="option select_btn" data-value="accessory"><span class="txt">ACCESSORY</span></button></li>
+										<li><button class="option select_btn" data-value="shoes"><span class="txt">SHOES</span></button></li>
 								</ul>
 							</div>
 								<script src="${contextPath}/resources/js/admin/product/select_wrapper2.js"></script>
@@ -144,8 +147,8 @@
 							상품 옵션
 						</span>
 						<span class="po_essential right">
-							<input type="checkbox" class="po_essential_input" id="po_essential_input" name="po_essential_input" >
-							<label for="po_essential_input">필수</label>
+							<!-- <input type="checkbox" class="po_essential_input" id="po_essential_input" name="po_essential_input" >
+							<label for="po_essential_input">필수</label> -->
 							<button class="po_essential_btn btn btn1 plus">+</button>
 							<button class="po_essential_btn btn btn1 minus disabled">-</button>
 						</span>

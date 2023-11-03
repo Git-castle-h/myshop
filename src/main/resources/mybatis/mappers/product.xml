@@ -237,9 +237,9 @@
 		p_id=#{p_id}
 	</update>
 	
-	<delete id="delOption" parameterType="ProductVO">
+	<delete id="delOption" parameterType="OptionVO">
 	  delete from t_option
-	  where p_id=#{p_id}
+	  where p_id=#{p_option}
 	</delete>
 	
 	

@@ -1,4 +1,0 @@
-package com.myshop.ex01.admin.main.dao;
-
-public interface MainDAO {
-}
