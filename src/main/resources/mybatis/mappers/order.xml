@@ -94,12 +94,14 @@
 			      </if>
 		    </set>
     	    where 
-	    	o_id=#{o_id} and m_id=#{m_id}
+	    	o_id=#{o_id}
 	</update> 
   
 	<delete id="delOrder" parameterType="OrderVO">
+		<![CDATA[
 		  delete from t_order
 		  where o_id=#{o_id}
+  		]]>
 	</delete>
 	
 	<select id="countOrder" parameterType="OrderVO" resultType="String">

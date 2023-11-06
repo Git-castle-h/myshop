@@ -70,7 +70,7 @@ public class HelpServiceImpl implements HelpService {
 	
 	@Override
 	public HelpVO s_helpById(HelpVO HelpVO) throws Exception {
-		HelpVO help = helpDAO.s_helpById(HelpVO);
+		HelpVO help = helpDAO.s_helpByNumber(HelpVO);
 		return help;
 	}
 
@@ -79,7 +79,7 @@ public class HelpServiceImpl implements HelpService {
 		
 		List<Object>helpDetail = new ArrayList<Object>();
 		
-		HelpVO help =helpDAO.s_helpById(HelpVO);
+		HelpVO help =helpDAO.s_helpByNumber(HelpVO);
 		
 		String m_id = help.getM_id();
 		String h_number = help.getH_number();

@@ -40,15 +40,15 @@
     	]]>
 	</select>
 	
-	<select id="s_helpById" resultMap="helpResult"   parameterType="HelpVO"  >
+	<select id="s_helpByNumber" resultMap="helpResult"   parameterType="HelpVO"  >
 	    <![CDATA[
-	    	select * from t_help where m_id = #{m_id} and h_number = #{h_number}
+	    	select * from t_help where h_number = #{h_number}
     	]]>
 	</select>
 	
 	<select id="s_helpImage" resultMap="helpImageResult"   parameterType="Help_imageVO"  >
 	    <![CDATA[
-	    	select * from t_help_image where h_number = #{h_number} and m_id = #{m_id}
+	    	select * from t_help_image where h_number = #{h_number}
     	]]>
 	</select>
 	
@@ -62,7 +62,10 @@
 	                    h_title,
 	                    h_category,
 	                    h_product_name,
-						h_context)
+						h_context,
+						h_answer_title,
+						h_answer_context
+						)
 
   			values(
   			      #{m_id},
@@ -71,6 +74,8 @@
   			      #{h_category},
   			      #{h_product_name },
   			      #{h_context}
+ 			      #{h_answer_title},
+ 			      #{h_answer_context}
  			 )
 		]]>
 	</insert> 
@@ -90,9 +95,14 @@
 	      <if test=" h_context!='' and h_context!=null">
 	        h_context=#{h_context},
 	      </if>
+	      <if test=" h_answer_title!='' and h_answer_title!=null">
+	        h_answer_title=#{h_answer_title},
+	      </if>
+	      <if test=" h_answer_context!='' and h_answer_context!=null">
+	        h_answer_context=#{h_answer_context},
+	      </if>
 	     </set>
 	    where 
-	    m_id = #{m_id} and
 	    h_number=#{h_number}
 	</update>
 	
@@ -150,7 +160,7 @@
 	
 	<select id="countHelp" parameterType="HelpVO" resultType="String">
 		<![CDATA[
-			select count(*)from t_help where m_id = #{m_id} 
+			select count(*)from t_help 
 		]]>
 	</select>
 

@@ -84,12 +84,8 @@ public class HelpControllerImpl implements HelpController {
         ModelAndView mav = new ModelAndView(viewName);
         
         HttpSession session = request.getSession();
-        String m_id = (String) session.getAttribute("m_id");
-        m_id = "sampleID";
-        session.setAttribute("m_id", m_id);
         session.setAttribute("h_number",h_number);
         
-        HelpVO.setM_id(m_id);
         HelpVO.setH_number(h_number);
         
         List<Object>helpDetail = helpService.detailHelp(HelpVO);

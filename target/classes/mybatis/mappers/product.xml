@@ -53,6 +53,8 @@
 	    ]]>
 	</select>
 	
+
+	
 	<select id="s_productById" resultMap="productResult"  parameterType="ProductVO" resultType="list"  >
 	    <![CDATA[
 	    	select * from t_product where p_id = #{p_id}
@@ -95,7 +97,7 @@
 	                    p_detail_context,
 						p_recommend,
 						admin_id,
-						p_category
+						p_category)
 
   			values(
   			      #{p_id},

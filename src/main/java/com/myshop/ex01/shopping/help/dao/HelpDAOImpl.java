@@ -32,8 +32,8 @@ public class HelpDAOImpl implements HelpDAO{
 	
 
 	@Override
-	public HelpVO s_helpById(HelpVO HelpVO) throws DataAccessException {
-		HelpVO help= sqlSession.selectOne("mapper.help.s_helpById",HelpVO); 
+	public HelpVO s_helpByNumber(HelpVO HelpVO) throws DataAccessException {
+		HelpVO help= sqlSession.selectOne("mapper.help.s_helpByNumber",HelpVO); 
 		   return help;
 	}
 

@@ -11,7 +11,7 @@ public interface HelpDAO {
 	
 	public List<HelpVO> s_helpList() throws DataAccessException;
 	public List<HelpVO> s_helpListById(HelpVO HelpVO) throws DataAccessException;
-	public HelpVO s_helpById(HelpVO HelpVO) throws DataAccessException;
+	public HelpVO s_helpByNumber(HelpVO HelpVO) throws DataAccessException;
 	public Help_imageVO s_helpImage(Help_imageVO Help_imageVO) throws DataAccessException;
 	public void addHelp(HelpVO HelpVO) throws DataAccessException;
 	public void updateHelp(HelpVO HelpVO) throws DataAccessException;

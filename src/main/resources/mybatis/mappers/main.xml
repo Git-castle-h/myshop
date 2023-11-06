@@ -41,8 +41,8 @@
 		                banner_title,
             		    banner_detail,
 	                    banner_link,
-	                    banner_color
-
+	                    banner_color 
+	                    )
   			values(
 		  			      #{banner_name},
 		  			      #{banner_title},
